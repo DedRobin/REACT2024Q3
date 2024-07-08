@@ -25,10 +25,6 @@ export default class Api {
       const result: TResult = await response.json();
 
       if (result) {
-        localStorage.setItem(
-          "dedrobin-REACT2024Q3-result",
-          JSON.stringify(result.results),
-        );
         return [response.status, result.results];
       }
     }

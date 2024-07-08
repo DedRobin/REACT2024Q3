@@ -38,13 +38,11 @@ class App extends Component<object, AppState> {
         loading: false,
         result,
       });
-
-      this.storeResult(result);
     }
   }
 
-  storeResult(result: TData[]) {
-    localStorage.setItem("dedrobin-REACT2024Q3-result", JSON.stringify(result));
+  storeResult(value: string) {
+    localStorage.setItem("dedrobin-REACT2024Q3-search-term", value);
   }
 
   async handleSubmit(event: React.FormEvent) {
@@ -57,7 +55,7 @@ class App extends Component<object, AppState> {
         const { value } = inputData;
 
         this.setState({ loading: true }); // loader appears
-
+        this.storeResult(value);
         await this.sendRequest(value);
       }
     }
