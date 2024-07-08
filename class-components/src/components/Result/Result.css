@@ -1,0 +1,23 @@
+.person-heading {
+  font-size: 2rem;
+}
+
+.people-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+table.person-item {
+  border-spacing: 10px;
+  border-radius: 10px;
+}
+
+.person-field {
+  width: 20%;
+  padding: 5px;
+}
+
+.person-text {
+  word-break: break-all;
+}
