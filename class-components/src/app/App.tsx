@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Search from "./components/Search/Search";
-import Loader from "./components/Loader/Loader";
-import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
-import ThrowErrorButton from "./components/ErrorButton/ErrorButton";
-import Api, { TData } from "./store/api";
+import Search from "../components/Search/Search";
+import Loader from "../components/Loader/Loader";
+import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
+import ThrowErrorButton from "../components/ErrorButton/ErrorButton";
+import Api, { TData } from "../store/api";
 
 import "./App.css";
-import Result from "./components/Result/Result";
+import Result from "../components/Result/Result";
 
 type AppState = {
   loading: boolean;
@@ -19,19 +19,24 @@ class App extends Component<object, AppState> {
   constructor(props: object) {
     super(props);
     this.state = {
-      loading: false, // loader disappears
+      loading: false,
       result: [],
     };
     this.api = new Api();
   }
 
   componentDidMount() {
-    this.setState({ loading: true }); // loader appears
-    this.sendRequest();
+    const value = localStorage.getItem("dedrobin-REACT2024Q3-search-term");
+    this.setState({ loading: true });
+    if (value) this.sendRequest(value);
+    else this.sendRequest();
   }
 
   async sendRequest(value: string = "") {
-    const [status, result] = await this.api.sendRequest({ search: value });
+    const [status, result] = await this.api.sendRequest({
+      search: value,
+      page: "1",
+    });
 
     if (status === 200) {
       this.setState({
@@ -54,7 +59,7 @@ class App extends Component<object, AppState> {
       if (inputData instanceof HTMLInputElement) {
         const { value } = inputData;
 
-        this.setState({ loading: true }); // loader appears
+        this.setState({ loading: true });
         this.storeResult(value);
         await this.sendRequest(value);
       }

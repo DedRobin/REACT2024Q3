@@ -16,6 +16,7 @@ export default class Api {
 
   async sendRequest(params: {
     search: string;
+    page: string;
   }): Promise<[number, TData[] | []]> {
     const urlParams = new URLSearchParams(params);
     const url = new URL(`${this.baseUrl}?${urlParams}`);
