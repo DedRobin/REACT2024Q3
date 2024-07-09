@@ -13,8 +13,9 @@ export default function Search({ callback }: SearchProps) {
       <h1 className="heading">Star Wars (People)</h1>
       <form className="search-form" onSubmit={callback}>
         <Input
-          placeholder="Enter"
+          placeholder="Enter text..."
           className="search-input"
+          name="search-input"
           defaultValue={value}
         />
         <Button className="search-button" type="submit">

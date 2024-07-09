@@ -4,6 +4,7 @@ export default function Input({
   onClick,
   placeholder,
   className,
+  name,
   defaultValue,
 }: InputProps) {
   return (
@@ -11,7 +12,7 @@ export default function Input({
       className={className}
       placeholder={placeholder}
       type="text"
-      name="search-input"
+      name={name}
       defaultValue={defaultValue}
       onClick={onClick}
     />

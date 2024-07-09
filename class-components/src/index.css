@@ -57,6 +57,12 @@ input {
   background-color: #9f3ed5;
   padding: 0px 10px;
   border-radius: 10px;
+  border: 2px #ad66d5 solid;
+}
+
+input::placeholder {
+  color: rgb(212, 212, 212);
+  font-style: italic;
 }
 
 table,
