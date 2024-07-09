@@ -13,6 +13,7 @@ export default function Result({ result }: { result: TData[] }) {
         <td className="person-text">{person[personField]}</td>
       </tr>
     ));
+
     return (
       <table className="person-item">
         <thead className="person-heading">№{index + 1}</thead>
@@ -21,5 +22,9 @@ export default function Result({ result }: { result: TData[] }) {
     );
   });
 
-  return <div className="people-list">{peopleList}</div>;
+  return (
+    <div className="result">
+      {peopleList.length > 0 ? peopleList : "No matches"}
+    </div>
+  );
 }

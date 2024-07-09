@@ -1,12 +1,7 @@
 .loader-wrapper {
-  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 100vw;
-  min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2;
 }
 
 .loader {

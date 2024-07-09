@@ -69,7 +69,6 @@ class App extends Component<object, AppState> {
     return (
       <>
         <ErrorBoundary>
-          <h1 className="heading">Star Wars (People)</h1>
           <Search
             callback={(event: React.FormEvent) => this.handleSubmit(event)}
           />
