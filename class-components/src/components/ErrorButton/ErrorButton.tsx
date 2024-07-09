@@ -25,7 +25,9 @@ export default class ThrowErrorButton extends Component<
         >
           Throw an Error
         </Button>
-        {this.state.errorIsRendered ? <ComponentWithError /> : null}
+        {this.state.errorIsRendered ? (
+          <ComponentWithError throwError={true} />
+        ) : null}
       </>
     );
   }

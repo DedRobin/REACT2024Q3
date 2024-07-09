@@ -1,4 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from "react";
+import Button from "../Button/Button";
+
+import "./ErrorBoundary.css";
 
 interface ErrorProps {
   children: ReactNode;
@@ -16,6 +19,7 @@ export default class ErrorBoundary extends Component<ErrorProps, ErrorState> {
       hasError: false,
       errorMessage: "Error was caught by ErrorBoundary",
     };
+    this.reset = this.reset.bind(this);
   }
 
   static getDerivedStateFromError() {
@@ -29,9 +33,20 @@ export default class ErrorBoundary extends Component<ErrorProps, ErrorState> {
     console.error(error, errorInfo);
   }
 
+  reset() {
+    this.setState({ hasError: false });
+  }
+
   render() {
     if (this.state.hasError) {
-      return <h2>{this.state.errorMessage}</h2>;
+      return (
+        <div className="error">
+          <div className="error-text">{this.state.errorMessage}</div>
+          <Button className="back-button" type="button" onClick={this.reset}>
+            Go back
+          </Button>
+        </div>
+      );
     }
 
     return this.props.children;

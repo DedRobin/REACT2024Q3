@@ -1,4 +1,5 @@
 import Button from "../Button/Button";
+import ThrowErrorButton from "../ErrorButton/ErrorButton";
 import Input from "../Input/Input";
 
 import "./Search.css";
@@ -17,6 +18,7 @@ export default function Search({ callback }: SearchProps) {
       <Button className="search-button" type="submit">
         Search
       </Button>
+      <ThrowErrorButton />
     </form>
   );
 }

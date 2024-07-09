@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Search from "../components/Search/Search";
 import Loader from "../components/Loader/Loader";
 import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
-import ThrowErrorButton from "../components/ErrorButton/ErrorButton";
 import Api, { TData } from "../store/api";
 
 import "./App.css";
@@ -74,7 +73,6 @@ class App extends Component<object, AppState> {
           <Search
             callback={(event: React.FormEvent) => this.handleSubmit(event)}
           />
-          <ThrowErrorButton />
           {this.state.loading ? (
             <Loader />
           ) : (
