@@ -18,7 +18,11 @@ export default class ThrowErrorButton extends Component<
   render(): ReactNode {
     return (
       <>
-        <Button type="button" onClick={this.throwError}>
+        <Button
+          className="error-button"
+          type="button"
+          onClick={this.throwError}
+        >
           Throw an Error
         </Button>
         {this.state.errorIsRendered ? <ComponentWithError /> : null}

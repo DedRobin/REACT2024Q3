@@ -9,8 +9,14 @@ export default function Search({ callback }: SearchProps) {
 
   return (
     <form className="search-form" onSubmit={callback}>
-      <Input placeholder="Enter" defaultValue={value} />
-      <Button type="submit">Search</Button>
+      <Input
+        placeholder="Enter"
+        className="search-input"
+        defaultValue={value}
+      />
+      <Button className="search-button" type="submit">
+        Search
+      </Button>
     </form>
   );
 }
