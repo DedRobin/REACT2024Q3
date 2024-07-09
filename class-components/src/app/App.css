@@ -43,10 +43,3 @@
 .read-the-docs {
   color: #888;
 }
-
-table,
-th,
-td {
-  border: 2px rgb(133, 133, 133) solid;
-  background-color: rgb(18, 18, 18);
-}
