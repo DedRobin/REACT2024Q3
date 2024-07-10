@@ -15,10 +15,14 @@ export default class Api {
   }
 
   async sendRequest(params: {
-    search: string;
     page: string;
+    search?: string;
   }): Promise<[number, TData[] | []]> {
-    const urlParams = new URLSearchParams(params);
+    console.log(Object.entries(params));
+    const filterPapams = Object.fromEntries(
+      Object.entries(params).filter((item) => !!item[1]),
+    );
+    const urlParams = new URLSearchParams(filterPapams);
     const url = new URL(`${this.baseUrl}?${urlParams}`);
     const response = await fetch(url);
 
