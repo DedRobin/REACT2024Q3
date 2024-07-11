@@ -1,4 +1,10 @@
-import { InputProps } from "./types";
+type InputProps = {
+  onClick?: () => void;
+  className: string;
+  name: string;
+  placeholder?: string;
+  defaultValue?: string;
+};
 
 export default function Input({
   onClick,

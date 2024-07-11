@@ -1,4 +1,9 @@
-import { ButtonProps } from "./types";
+type ButtonProps = {
+  className: string;
+  type: "button" | "submit";
+  onClick?: () => void;
+  children?: React.ReactNode;
+};
 
 export default function Button({
   className,

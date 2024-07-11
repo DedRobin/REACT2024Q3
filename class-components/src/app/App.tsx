@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Search from "../components/Search/Search";
-import Loader from "../components/Loader/Loader";
-import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
+import Search from "../components/Search";
+import Loader from "../components/Loader";
+import ErrorBoundary from "../components/ErrorBoundary";
 import Api, { TData } from "../store/api";
 
 import "./App.css";

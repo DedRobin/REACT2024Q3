@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Button from "../Button/Button";
-import ComponentWithError from "../ComponentWithError/ComponentWithError";
+import Button from "../Button";
+import ComponentWithError from "../ComponentWithError";
 
 export default function ThrowErrorButton() {
   const [errorIsRendered, setErrorIsRendered] = useState(false);

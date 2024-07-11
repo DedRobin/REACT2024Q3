@@ -1,9 +1,13 @@
-import Button from "../Button/Button";
+import Button from "../Button";
 import ThrowErrorButton from "../ErrorButton";
-import Input from "../Input/Input";
+import Input from "../Input";
 
-import "./Search.css";
-import { SearchProps } from "./types";
+import "./style.css";
+
+type SearchProps = {
+  callback: Handler;
+};
+type Handler = (event: React.FormEvent<Element>) => Promise<void>;
 
 export default function Search({ callback }: SearchProps) {
   const value = localStorage.getItem("dedrobin-REACT2024Q3-search-term") ?? "";
