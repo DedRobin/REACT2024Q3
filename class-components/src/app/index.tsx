@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Search from "../components/Search";
 import Loader from "../components/Loader";
 import ErrorBoundary from "../components/ErrorBoundary";
@@ -10,13 +10,14 @@ import "./style.css";
 export default function App() {
   const [loading, setLoading] = useState<boolean>(false);
   const [result, setResult] = useState<TData[] | []>([]);
+  useEffect(() => componentDidMount(), []);
 
-  // componentDidMount() {
-  //   const value = localStorage.getItem("dedrobin-REACT2024Q3-search-term");
-  //   this.setState({ loading: true });
-  //   if (value) this.sendRequest(value);
-  //   else this.sendRequest();
-  // }
+  const componentDidMount = () => {
+    const value = localStorage.getItem("dedrobin-REACT2024Q3-search-term");
+    setLoading(true);
+    if (value) sendRequest(value);
+    else sendRequest();
+  };
 
   const sendRequest = async (value: string = "") => {
     const [status, result] = await api.sendRequest({
