@@ -14,10 +14,18 @@ export default function Result({ result }: { result: TData[] }) {
       </tr>
     ));
 
+    const tableHeading = (
+      <thead className="person-heading">
+        <tr>
+          <td colSpan={2}>№{index + 1}</td>
+        </tr>
+      </thead>
+    );
+
     return (
       <table className="person-item">
-        <thead className="person-heading">№{index + 1}</thead>
-        {row}
+        {tableHeading}
+        <tbody>{row}</tbody>
       </table>
     );
   });
