@@ -1,7 +1,7 @@
 type InputProps = {
-  onClick?: () => void;
   className: string;
   name: string;
+  onClick?: () => void;
   placeholder?: string;
   defaultValue?: string;
 };
