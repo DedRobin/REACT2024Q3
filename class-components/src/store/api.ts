@@ -1,4 +1,4 @@
-export type TResult = {
+export type TResponseData = {
   count: number;
   next: number | null;
   previous: number | null;
@@ -14,7 +14,7 @@ class Api {
     this.baseUrl = "https://swapi.dev/api/people/";
   }
 
-  async sendRequest(params: {
+  async request(params: {
     page: string;
     search?: string;
   }): Promise<[number, TData[] | []]> {
@@ -26,10 +26,10 @@ class Api {
     const response = await fetch(url);
 
     if (response.status === 200) {
-      const result: TResult = await response.json();
+      const data: TResponseData = await response.json();
 
-      if (result) {
-        return [response.status, result.results];
+      if (data) {
+        return [response.status, data.results];
       }
     }
 

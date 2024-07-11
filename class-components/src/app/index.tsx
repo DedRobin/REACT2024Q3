@@ -10,9 +10,10 @@ import "./style.css";
 export default function App() {
   const [loading, setLoading] = useState<boolean>(false);
   const [result, setResult] = useState<TData[] | []>([]);
-  useEffect(() => componentDidMount(), []);
+  useEffect(() => initialRequest(), []);
 
-  const componentDidMount = () => {
+  const initialRequest = () => {
+    console.log("RENDER");
     const value = localStorage.getItem("dedrobin-REACT2024Q3-search-term");
     setLoading(true);
     if (value) sendRequest(value);
@@ -20,7 +21,7 @@ export default function App() {
   };
 
   const sendRequest = async (value: string = "") => {
-    const [status, result] = await api.sendRequest({
+    const [status, result] = await api.request({
       search: value,
       page: "1",
     });
