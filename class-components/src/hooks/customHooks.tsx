@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-type localStorageState = [string, (value: string) => void];
+type SearchQueryHook = [string, Dispatch<SetStateAction<string>>];
 
-export const useLocalStorage = (initialState: string): localStorageState => {
-  const [state, setState] = useState(initialState);
+export const useSearchQuery = (): SearchQueryHook => {
+  const lastSearchQuery =
+    localStorage.getItem("dedrobin-REACT2024Q3-search-term") || "";
 
-  const handler = (value: string) => {
-    localStorage.setItem("dedrobin-REACT2024Q3-search-term", value);
-    setState(value);
-  };
+  const [searchQuery, setSearchQuery] = useState(lastSearchQuery);
 
-  return [state, handler];
+  useEffect(() => {
+    localStorage.setItem("dedrobin-REACT2024Q3-search-term", searchQuery);
+  }, [searchQuery]);
+
+  return [searchQuery, setSearchQuery];
 };
