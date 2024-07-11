@@ -18,7 +18,6 @@ export default class Api {
     page: string;
     search?: string;
   }): Promise<[number, TData[] | []]> {
-    console.log(Object.entries(params));
     const filterPapams = Object.fromEntries(
       Object.entries(params).filter((item) => !!item[1]),
     );

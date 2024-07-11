@@ -1,17 +1,19 @@
 import { TData } from "../../store/api";
 import { toCapitalizeCase, removeUndercheckSymbol } from "../../utils/tools";
 
-import "./Result.css";
+import "./style.css";
 
 export default function Result({ result }: { result: TData[] }) {
   const peopleList = result.map((person, index) => {
-    const row = Object.keys(person).map((personField) => (
-      <tr className="person-row">
-        <td className="person-field">
-          {toCapitalizeCase(removeUndercheckSymbol(personField))}
-        </td>
-        <td className="person-text">{person[personField]}</td>
-      </tr>
+    const tableRow = Object.keys(person).map((personField) => (
+      <tbody>
+        <tr className="person-row">
+          <td className="person-field">
+            {toCapitalizeCase(removeUndercheckSymbol(personField))}
+          </td>
+          <td className="person-text">{person[personField]}</td>
+        </tr>
+      </tbody>
     ));
 
     const tableHeading = (
@@ -25,7 +27,7 @@ export default function Result({ result }: { result: TData[] }) {
     return (
       <table className="person-item">
         {tableHeading}
-        <tbody>{row}</tbody>
+        {tableRow}
       </table>
     );
   });

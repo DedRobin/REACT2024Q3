@@ -1,5 +1,5 @@
 import Button from "../Button/Button";
-import ThrowErrorButton from "../ErrorButton/ErrorButton";
+import ThrowErrorButton from "../ErrorButton";
 import Input from "../Input/Input";
 
 import "./Search.css";

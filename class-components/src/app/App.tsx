@@ -5,7 +5,7 @@ import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
 import Api, { TData } from "../store/api";
 
 import "./App.css";
-import Result from "../components/Result/Result";
+import Result from "../components/Result";
 
 type AppState = {
   loading: boolean;
