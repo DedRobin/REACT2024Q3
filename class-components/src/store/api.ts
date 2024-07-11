@@ -7,7 +7,7 @@ export type TResult = {
 
 export type TData = { [key: string]: string };
 
-export default class Api {
+class Api {
   baseUrl: string;
 
   constructor() {
@@ -36,3 +36,5 @@ export default class Api {
     return [response.status, []];
   }
 }
+
+export const api = new Api();
