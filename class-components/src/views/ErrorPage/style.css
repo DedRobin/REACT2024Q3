@@ -1,0 +1,18 @@
+.error-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-status {
+  font-size: 5rem;
+  margin: 10px 0px;
+}
+
+.error-text {
+  font-size: 2rem;
+  font-style: italic;
+}
