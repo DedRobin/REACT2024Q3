@@ -49,7 +49,10 @@ export default function App() {
   return (
     <>
       <ErrorBoundary>
-        <Search callback={(event: React.FormEvent) => handleSubmit(event)} />
+        <Search
+          searchQuery={searchQuery}
+          callback={(event: React.FormEvent) => handleSubmit(event)}
+        />
         {loading ? <Loader /> : <Result result={result} />}
       </ErrorBoundary>
     </>
