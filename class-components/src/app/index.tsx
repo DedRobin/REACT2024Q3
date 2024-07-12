@@ -13,12 +13,10 @@ export default function App() {
   const [result, setResult] = useState<TData[] | []>([]);
   const [searchQuery, setSearchQuery] = useSearchQuery();
 
-  useEffect(() => initialRequest(searchQuery), []);
-
-  const initialRequest = (searchQuery: string) => {
+  useEffect(() => {
     setLoading(true);
     sendRequest(searchQuery);
-  };
+  }, [searchQuery]);
 
   const sendRequest = async (value: string | null) => {
     const [status, result] = await api.request({
