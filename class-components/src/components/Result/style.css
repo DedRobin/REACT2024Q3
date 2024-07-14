@@ -1,0 +1,23 @@
+.person-heading {
+  font-size: 2rem;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.person-item {
+  border-spacing: 10px;
+}
+
+.person-field {
+  font-weight: bold;
+  width: 20%;
+}
+
+.person-text {
+  font-style: italic;
+  word-break: break-all;
+}
