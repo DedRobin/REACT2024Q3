@@ -1,7 +1,7 @@
 export type TResponseData = {
   count: number;
-  next: number | null;
-  previous: number | null;
+  next: string | null;
+  previous: string | null;
   results: TData[] | [];
 };
 
@@ -15,25 +15,18 @@ class Api {
   }
 
   async request(params: {
-    page: string;
+    page?: string;
     search?: string;
-  }): Promise<[number, TData[] | []]> {
+  }): Promise<[number, TResponseData]> {
     const filterPapams = Object.fromEntries(
       Object.entries(params).filter((item) => !!item[1]),
     );
     const urlParams = new URLSearchParams(filterPapams);
     const url = new URL(`${this.baseUrl}?${urlParams}`);
     const response = await fetch(url);
+    const data: TResponseData = await response.json();
 
-    if (response.status === 200) {
-      const data: TResponseData = await response.json();
-
-      if (data) {
-        return [response.status, data.results];
-      }
-    }
-
-    return [response.status, []];
+    return [response.status, data];
   }
 }
 
