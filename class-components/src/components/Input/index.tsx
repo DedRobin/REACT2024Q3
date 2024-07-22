@@ -4,6 +4,7 @@ type InputProps = {
   onClick?: () => void;
   placeholder?: string;
   defaultValue?: string;
+  hidden?: boolean;
 };
 
 export default function Input({
@@ -12,6 +13,7 @@ export default function Input({
   className,
   name,
   defaultValue,
+  hidden,
 }: InputProps) {
   return (
     <input
@@ -21,6 +23,7 @@ export default function Input({
       name={name}
       defaultValue={defaultValue}
       onClick={onClick}
+      hidden={hidden}
     />
   );
 }

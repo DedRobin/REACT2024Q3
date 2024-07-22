@@ -18,6 +18,8 @@ export async function resultLoader({
   console.log("page =", page);
   console.log("search =", search);
 
+  if (search) localStorage.setItem("dedrobin-REACT2024Q3-search-term", search);
+
   const response = await api.request({
     search,
     page,
