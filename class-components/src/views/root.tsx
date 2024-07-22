@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import ErrorPage from "../views/ErrorPage";
-import MainPage from "../views/MainPage";
-import { resultLoader } from "../views/MainPage/services";
+import ErrorPage from "./ErrorPage";
+import MainPage from "./MainPage";
+import { resultLoader } from "./MainPage/services";
 
 export const router = createBrowserRouter([
   {
