@@ -15,7 +15,8 @@ export async function resultLoader({
   const page = url.searchParams.get("page") || undefined;
   const search = url.searchParams.get("search") || undefined;
 
-  console.log(page);
+  console.log("page =", page);
+  console.log("search =", search);
 
   const response = await api.request({
     search,
