@@ -1,3 +1,4 @@
+import { defer } from "react-router-dom";
 import { api, TData } from "../../store/api";
 
 export type TRequest = {
@@ -11,7 +12,7 @@ export type TResponse = {
   searchParams: URLSearchParams;
 };
 
-export async function resultLoader({ request }: TRequest): Promise<TResponse> {
+export async function resultLoader({ request }: TRequest) {
   const url = new URL(request.url);
   const { searchParams } = url;
   const page = searchParams.get("page") || undefined;
@@ -20,7 +21,7 @@ export async function resultLoader({ request }: TRequest): Promise<TResponse> {
   console.log("page =", page);
   console.log("search =", search);
 
-  if (search) localStorage.setItem("dedrobin-REACT2024Q3-search-term", search);
+  localStorage.setItem("dedrobin-REACT2024Q3-search-term", search || "");
 
   const response = await api.request({
     search,
@@ -30,5 +31,5 @@ export async function resultLoader({ request }: TRequest): Promise<TResponse> {
   const [status, data] = response;
   const { count, results } = data;
 
-  return { status, count, results, searchParams };
+  return defer({ status, count, results, searchParams });
 }

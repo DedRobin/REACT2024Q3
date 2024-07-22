@@ -4,9 +4,9 @@ import { toCapitalizeCase, removeUndercheckSymbol } from "../../utils/tools";
 
 import "./style.css";
 
-type TResult = { result: TData[]; offset: number };
+type TResult = { result: TData[] };
 
-export default function Result({ result, offset }: TResult) {
+export default function Result({ result }: TResult) {
   const [peopleList, setPeopleList] = useState<ReactNode[] | "No matches">();
 
   useEffect(() => {
@@ -22,17 +22,8 @@ export default function Result({ result, offset }: TResult) {
         </tbody>
       ));
 
-      const tableHeading = (
-        <thead className="person-heading">
-          <tr>
-            <td colSpan={2}>№{index + 1 + offset}</td>
-          </tr>
-        </thead>
-      );
-
       return (
         <table key={index} className="person-item">
-          {tableHeading}
           {tableRow}
         </table>
       );
@@ -40,7 +31,7 @@ export default function Result({ result, offset }: TResult) {
 
     if (!updatedPeopleList.length) setPeopleList("No matches");
     else setPeopleList(updatedPeopleList);
-  }, [offset, result]);
+  }, [result]);
 
   return <div className="result">{peopleList}</div>;
 }
