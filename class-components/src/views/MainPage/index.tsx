@@ -8,7 +8,7 @@ import { useLoaderData, useNavigation } from "react-router-dom";
 import { TResponse } from "./services";
 
 export default function MainPage() {
-  const { status, count, results } = useLoaderData() as TResponse;
+  const { status, count, results, searchParams } = useLoaderData() as TResponse;
   const navigation = useNavigation();
 
   const [currentPage, setCurrentPage] = useState<string>("1");
@@ -37,12 +37,14 @@ export default function MainPage() {
             <Paginator
               pages={pages}
               current={currentPage}
+              searchParams={searchParams}
               onChange={changePage}
             ></Paginator>
             <Result result={results} offset={offset} />
             <Paginator
               pages={pages}
               current={currentPage}
+              searchParams={searchParams}
               onChange={changePage}
             ></Paginator>
           </>

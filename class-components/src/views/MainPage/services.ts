@@ -8,12 +8,14 @@ export type TResponse = {
   status: number;
   count: number;
   results: TData[];
+  searchParams: URLSearchParams;
 };
 
 export async function resultLoader({ request }: TRequest): Promise<TResponse> {
   const url = new URL(request.url);
-  const page = url.searchParams.get("page") || undefined;
-  const search = url.searchParams.get("search") || undefined;
+  const { searchParams } = url;
+  const page = searchParams.get("page") || undefined;
+  const search = searchParams.get("search") || undefined;
 
   console.log("page =", page);
   console.log("search =", search);
@@ -28,5 +30,5 @@ export async function resultLoader({ request }: TRequest): Promise<TResponse> {
   const [status, data] = response;
   const { count, results } = data;
 
-  return { status, count, results };
+  return { status, count, results, searchParams };
 }
