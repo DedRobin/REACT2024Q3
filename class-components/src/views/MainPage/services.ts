@@ -1,16 +1,16 @@
 import { api, TData } from "../../store/api";
 
+export type TRequest = {
+  request: Request;
+};
+
 export type TResponse = {
   status: number;
   count: number;
   results: TData[];
 };
 
-export async function resultLoader({
-  request,
-}: {
-  request: Request;
-}): Promise<TResponse> {
+export async function resultLoader({ request }: TRequest): Promise<TResponse> {
   const url = new URL(request.url);
   const page = url.searchParams.get("page") || undefined;
   const search = url.searchParams.get("search") || undefined;

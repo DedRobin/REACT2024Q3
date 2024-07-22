@@ -4,12 +4,13 @@ import Loader from "../../components/Loader";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import Paginator from "../../components/Paginator";
 import Result from "../../components/Result";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import { TResponse } from "./services";
 
 export default function MainPage() {
   const { status, count, results } = useLoaderData() as TResponse;
-  const [loading, setLoading] = useState<boolean>(true);
+  const navigation = useNavigation();
+
   const [currentPage, setCurrentPage] = useState<string>("1");
   const [offset, setOffset] = useState<number>(0);
   const [pages, setPages] = useState<number>(1);
@@ -21,7 +22,6 @@ export default function MainPage() {
 
   useEffect(() => {
     if (status === 200) {
-      setLoading(false);
       setPages(Math.ceil(count / 10));
     }
   }, [count, results, status]);
@@ -30,7 +30,7 @@ export default function MainPage() {
     <>
       <ErrorBoundary>
         <Search />
-        {loading ? (
+        {navigation.state === "loading" ? (
           <Loader />
         ) : (
           <>
