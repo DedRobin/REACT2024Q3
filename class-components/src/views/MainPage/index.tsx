@@ -3,11 +3,15 @@ import Loader from "../../components/Loader";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import Paginator from "../../components/Paginator";
 import Result from "../../components/Result";
-import { useLoaderData, useNavigation } from "react-router-dom";
+import { Await, useLoaderData, useNavigation } from "react-router-dom";
 import { TResponse } from "./services";
+import { Suspense } from "react";
 
 export default function MainPage() {
-  const { count, results, searchParams } = useLoaderData() as TResponse;
+  const { data, searchParams } = useLoaderData() as {
+    data: Promise<Omit<TResponse, "searchParamns">>;
+    searchParams: URLSearchParams;
+  };
   const navigation = useNavigation();
   return (
     <>
@@ -18,9 +22,28 @@ export default function MainPage() {
           <Loader />
         ) : (
           <>
-            <Paginator count={count} searchParams={searchParams}></Paginator>
-            <Result result={results} />
-            <Paginator count={count} searchParams={searchParams}></Paginator>
+            <Suspense fallback={<Loader />}>
+              <Await
+                resolve={data}
+                errorElement={<div>Something went wrong!</div>}
+              >
+                {(data) => {
+                  return (
+                    <>
+                      <Paginator
+                        count={data.count}
+                        searchParams={searchParams}
+                      ></Paginator>
+                      <Result result={data.results} />
+                      <Paginator
+                        count={data.count}
+                        searchParams={searchParams}
+                      ></Paginator>
+                    </>
+                  );
+                }}
+              </Await>
+            </Suspense>
           </>
         )}
       </ErrorBoundary>

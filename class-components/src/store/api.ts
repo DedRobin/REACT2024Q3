@@ -19,14 +19,13 @@ class Api {
     this.baseUrl = "https://swapi.dev/api/people/";
   }
 
-  async request(params: TParams): Promise<[number, TResponseData]> {
+  async request(params: TParams): Promise<TResponseData> {
     const filteredPapams = this.filterParams(params);
     const urlParams = new URLSearchParams(filteredPapams);
     const url = new URL(`${this.baseUrl}?${urlParams}`);
-    const response = await fetch(url);
-    const data: TResponseData = await response.json();
+    const data: TResponseData = await (await fetch(url)).json();
 
-    return [response.status, data];
+    return data;
   }
 
   filterParams(params: TParams) {

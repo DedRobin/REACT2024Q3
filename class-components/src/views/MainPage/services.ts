@@ -6,13 +6,12 @@ export type TRequest = {
 };
 
 export type TResponse = {
-  status: number;
   count: number;
   results: TData[];
   searchParams: URLSearchParams;
 };
 
-export async function resultLoader({ request }: TRequest) {
+export function resultLoader({ request }: TRequest) {
   const url = new URL(request.url);
   const { searchParams } = url;
   const page = searchParams.get("page") || undefined;
@@ -23,13 +22,10 @@ export async function resultLoader({ request }: TRequest) {
 
   localStorage.setItem("dedrobin-REACT2024Q3-search-term", search || "");
 
-  const response = await api.request({
+  const data = api.request({
     search,
     page,
   });
 
-  const [status, data] = response;
-  const { count, results } = data;
-
-  return defer({ status, count, results, searchParams });
+  return defer({ data, searchParams });
 }
