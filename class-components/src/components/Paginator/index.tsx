@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useCallback, useEffect, useState } from "react";
 
 import "./style.css";
 import { Link } from "react-router-dom";
@@ -22,13 +22,28 @@ export default function Paginator({ count, searchParams }: PaginatorProps) {
     setCurrentPage(page);
   };
 
-  let arrowPrevPage = `?page=${+currentPage - 1}`;
-  let arrowNextPage = `?page=${+currentPage + 1}`;
+  const mutatePage = useCallback(
+    (searchParams: URLSearchParams, action: "increase" | "decrease") => {
+      if (searchParams.has("page")) {
+        const page = +searchParams.get("page");
+        if (action === "increase") searchParams.set("page", page + 1);
+        else if (action === "decrease") searchParams.set("page", page - 1);
+      }
+      return searchParams;
+    },
+    [],
+  );
 
-  if (searchParams && searchParams.size) {
-    arrowPrevPage = arrowPrevPage.concat(`&${searchParams.toString()}`);
-    arrowNextPage = arrowNextPage.concat(`&${searchParams.toString()}`);
-  }
+  // let arrowPrevPage = `?page=${+currentPage - 1}`;
+  const arrowPrevPage = "?" + mutatePage(searchParams, "decrease").toString();
+  // let arrowNextPage = `?page=${+currentPage + 1}`;
+  const arrowNextPage = "?" + mutatePage(searchParams, "increase").toString();
+debugger
+
+  // if (searchParams && searchParams.size) {
+  //   arrowPrevPage = arrowPrevPage.concat(`&${searchParams.toString()}`);
+  //   arrowNextPage = arrowNextPage.concat(`&${searchParams.toString()}`);
+  // }
 
   const pagesElements: ReactElement[] = [];
 
