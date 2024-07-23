@@ -21,3 +21,8 @@
   font-style: italic;
   word-break: break-all;
 }
+
+.person-checkbox {
+  width: 30px;
+  height: 30px;
+}

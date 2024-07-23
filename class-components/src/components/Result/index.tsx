@@ -24,6 +24,11 @@ export default function Result({ result }: TResult) {
 
       return (
         <table key={index} className="person-item">
+          <input
+            className="person-checkbox"
+            name={person.name}
+            type="checkbox"
+          />
           {tableRow}
         </table>
       );
