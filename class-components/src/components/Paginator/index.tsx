@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 
 type PaginatorProps = {
   count: number;
-  searchParams?: URLSearchParams;
+  searchParams: URLSearchParams;
 };
 
 export default function Paginator({ count, searchParams }: PaginatorProps) {
   const [currentPage, setCurrentPage] = useState<string>(
-    searchParams?.get("page") || "1",
+    searchParams.get("page") || "1",
   );
   const [pages, setPages] = useState<number>(1);
 
@@ -21,36 +21,35 @@ export default function Paginator({ count, searchParams }: PaginatorProps) {
   const changePage = (page: string) => {
     setCurrentPage(page);
   };
-
+  [];
   const mutatePage = useCallback(
-    (searchParams: URLSearchParams, action: "increase" | "decrease") => {
-      if (searchParams.has("page")) {
-        const page = +searchParams.get("page");
-        if (action === "increase") searchParams.set("page", page + 1);
-        else if (action === "decrease") searchParams.set("page", page - 1);
+    (
+      searchParams: URLSearchParams,
+      action: "increase" | "decrease",
+      num: number = 1,
+    ) => {
+      const params = new URLSearchParams(searchParams);
+      if (!params.has("page")) params.set("page", "1");
+      const page = params.get("page");
+      if (page !== null) {
+        if (action === "increase") params.set("page", `${+page + num}`);
+        else if (action === "decrease") params.set("page", `${+page - num}`);
       }
-      return searchParams;
+
+      return params;
     },
     [],
   );
 
-  // let arrowPrevPage = `?page=${+currentPage - 1}`;
   const arrowPrevPage = "?" + mutatePage(searchParams, "decrease").toString();
-  // let arrowNextPage = `?page=${+currentPage + 1}`;
   const arrowNextPage = "?" + mutatePage(searchParams, "increase").toString();
-debugger
-
-  // if (searchParams && searchParams.size) {
-  //   arrowPrevPage = arrowPrevPage.concat(`&${searchParams.toString()}`);
-  //   arrowNextPage = arrowNextPage.concat(`&${searchParams.toString()}`);
-  // }
 
   const pagesElements: ReactElement[] = [];
 
   for (let page = 1; page <= pages; page++) {
-    let to = `?page=${page}`;
-    if (searchParams && searchParams.size)
-      to = to.concat(`&${searchParams.toString()}`);
+    const params = new URLSearchParams(searchParams);
+    params.set("page", `${page}`);
+    const to = `?${params.toString()}`;
     pagesElements.push(
       <Link
         to={to}

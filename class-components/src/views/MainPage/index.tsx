@@ -17,7 +17,6 @@ export default function MainPage() {
     <>
       <ErrorBoundary>
         <Search />
-
         {navigation.state === "loading" ? (
           <Loader />
         ) : (
