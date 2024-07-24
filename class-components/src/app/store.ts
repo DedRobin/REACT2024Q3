@@ -4,6 +4,6 @@ import resultReducer from "../components/Result/slice";
 
 export const store = configureStore({
   reducer: {
-    result: resultReducer,
+    results: resultReducer,
   },
 });
