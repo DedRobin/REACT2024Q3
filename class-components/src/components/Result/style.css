@@ -4,18 +4,29 @@
 
 .result {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 80%;
   gap: 20px;
 }
 
 .person-item {
+  outline: 2px #ad66d5 solid;
+  border-radius: 10px;
   display: flex;
-  gap: 10px;
+  align-items: start;
+  min-width: 25%;
+  overflow: hidden;
+  justify-self: stretch;
+}
+
+.person-item table {
+  width: 100%;
 }
 
 .person-field {
   font-weight: bold;
-  width: 20%;
+  width: 30%;
 }
 
 .person-text {
@@ -24,6 +35,5 @@
 }
 
 .person-checkbox {
-  width: 30px;
-  height: 30px;
+  margin: 10px;
 }

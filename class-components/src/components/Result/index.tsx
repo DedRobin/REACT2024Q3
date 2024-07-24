@@ -34,7 +34,7 @@ export default function Result({ result: people }: TResult) {
     ) => {
       const { target } = event;
       if (target instanceof HTMLInputElement) {
-        const selected = target.value;
+        const selected = target.checked;
         if (personInStore) {
           dispatch(resultUpdated({ name: personName, selected: selected }));
         } else {
@@ -42,7 +42,7 @@ export default function Result({ result: people }: TResult) {
         }
       }
     },
-    [],
+    [dispatch],
   );
 
   useEffect(() => {
@@ -53,9 +53,11 @@ export default function Result({ result: people }: TResult) {
       );
       const checked = personInStore ? personInStore.selected : false;
 
-      const rows = Object.keys(person).map((personField, index) => (
-        <Row key={index} index={index} person={person} field={personField} />
-      ));
+      const rows = Object.keys(person)
+        .slice(0, 8)
+        .map((personField, index) => (
+          <Row key={index} index={index} person={person} field={personField} />
+        ));
 
       return (
         <Table

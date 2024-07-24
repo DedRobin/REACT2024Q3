@@ -65,16 +65,10 @@ input::placeholder {
   font-style: italic;
 }
 
-table,
 td {
-  border: 2px #ad66d5 solid;
+  outline: 2px #ad66d5 solid;
   word-break: break-all;
-  border-radius: 10px;
   padding: 10px;
-}
-
-table {
-  background-color: #5f2580;
 }
 
 td {
