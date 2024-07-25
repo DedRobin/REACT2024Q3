@@ -3,21 +3,20 @@ import Loader from "../../components/Loader";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import Paginator from "../../components/Paginator";
 import Result from "../../components/Result";
-import { Await, useLoaderData, useNavigation } from "react-router-dom";
-import { TResponse } from "./services";
+import { Await, useLoaderData } from "react-router-dom";
 import { Suspense } from "react";
+import { useGetCharactersQuery } from "../../store/apiSlice";
 
 export default function MainPage() {
-  const { data, searchParams } = useLoaderData() as {
-    data: Promise<Omit<TResponse, "searchParamns">>;
-    searchParams: URLSearchParams;
-  };
-  const navigation = useNavigation();
+  const searchParams = useLoaderData() as URLSearchParams;
+
+  const { data, isLoading } = useGetCharactersQuery(searchParams);
+
   return (
     <>
       <ErrorBoundary>
         <Search />
-        {navigation.state === "loading" ? (
+        {isLoading ? (
           <Loader />
         ) : (
           <>
