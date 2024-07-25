@@ -76,7 +76,7 @@ export default function Result({ result: people }: TResult) {
     else setPeopleList(updatedPeopleList);
   }, [onChange, people, peopleStore]);
 
-  return <div className="result">{peopleList}</div>;
+  return <div className="people">{peopleList}</div>;
 }
 
 type TableProps = {
@@ -105,7 +105,7 @@ function Table({
           onChange(event, personInStore, person.name)
         }
       />
-      <table>{children}</table>
+      <table className="person-table">{children}</table>
     </div>
   );
 }

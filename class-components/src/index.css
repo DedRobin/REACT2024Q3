@@ -65,14 +65,18 @@ input::placeholder {
   font-style: italic;
 }
 
+table,
+th,
 td {
-  outline: 2px #ad66d5 solid;
-  word-break: break-all;
-  padding: 10px;
+  border-width: 0px;
+}
+
+table {
+  border-spacing: 1px;
 }
 
 td {
-  background-color: #48036f;
+  word-break: break-all;
 }
 
 @media (prefers-color-scheme: light) {

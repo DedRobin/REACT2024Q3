@@ -4,29 +4,49 @@
 
 .result {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.people {
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 80%;
   gap: 20px;
 }
 
 .person-item {
-  outline: 2px #ad66d5 solid;
+  border: 2px #ad66d5 solid;
   border-radius: 10px;
   display: flex;
   align-items: start;
-  min-width: 25%;
+  width: 350px;
   overflow: hidden;
   justify-self: stretch;
 }
 
-.person-item table {
+.person-table {
   width: 100%;
+}
+
+.person-field,
+.person-text {
+  outline: #ad66d5 solid 2px;
+}
+
+.person-field,
+.person-text {
+  padding: 10px;
+}
+
+.person-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 
 .person-field {
   font-weight: bold;
-  width: 30%;
 }
 
 .person-text {

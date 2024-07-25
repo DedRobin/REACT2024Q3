@@ -28,7 +28,7 @@ export default function MainPage() {
               >
                 {(data) => {
                   return (
-                    <>
+                    <div className="result">
                       <Paginator
                         count={data.count}
                         searchParams={searchParams}
@@ -38,7 +38,7 @@ export default function MainPage() {
                         count={data.count}
                         searchParams={searchParams}
                       ></Paginator>
-                    </>
+                    </div>
                   );
                 }}
               </Await>
