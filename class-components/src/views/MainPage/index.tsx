@@ -11,7 +11,6 @@ export default function MainPage() {
   const { searchParams } = useLoaderData() as TResponse;
   const { data, isFetching } = useGetCharactersQuery(searchParams.toString());
 
-  console.log(data);
   return (
     <>
       <ErrorBoundary>

@@ -12,6 +12,7 @@ export type SwapiResponse = {
 export const starWarsApi = createApi({
   reducerPath: "starWarsApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://swapi.dev/api/" }),
+  keepUnusedDataFor: 0,
   endpoints: (builder) => ({
     getCharacters: builder.query<SwapiResponse, string>({
       query: (searchParams) => {
