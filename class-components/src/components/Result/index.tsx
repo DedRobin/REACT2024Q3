@@ -8,12 +8,11 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import "./style.css";
-import { TData } from "../../store/api";
 import { toCapitalizeCase, removeUndercheckSymbol } from "../../utils/tools";
 import { resultAdded, ResultPayload, resultUpdated } from "./slice";
 import { store } from "../../app/store";
+import { SwapiData } from "../../store/apiSlice";
 
-type TResult = { result: TData[] };
 type RootState = ReturnType<typeof store.getState>;
 type TOnChange = (
   event: BaseSyntheticEvent,
@@ -21,7 +20,7 @@ type TOnChange = (
   personName: string,
 ) => void;
 
-export default function Result({ result: people }: TResult) {
+export default function Result({ results: people }: { results: SwapiData[] }) {
   const [peopleList, setPeopleList] = useState<ReactNode[] | "No matches">();
   const dispatch = useDispatch();
   const peopleStore = useSelector((state: RootState) => state.results);
@@ -80,7 +79,7 @@ export default function Result({ result: people }: TResult) {
 }
 
 type TableProps = {
-  person: TData;
+  person: SwapiData;
   personInStore: ResultPayload | undefined;
   checked: boolean;
   onChange: TOnChange;
@@ -110,7 +109,7 @@ function Table({
   );
 }
 
-type RowProps = { index: number; person: TData; field: string };
+type RowProps = { index: number; person: SwapiData; field: string };
 
 function Row({ index, person, field }: RowProps) {
   return (
