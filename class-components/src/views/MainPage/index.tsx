@@ -6,11 +6,12 @@ import Result from "../../components/Result";
 import { Await, useLoaderData } from "react-router-dom";
 import { Suspense } from "react";
 import { useGetCharactersQuery } from "../../store/apiSlice";
+import { TResponse } from "./services";
 
 export default function MainPage() {
-  const searchParams = useLoaderData() as URLSearchParams;
+  const { searchParams } = useLoaderData() as TResponse;
 
-  const { data, isLoading } = useGetCharactersQuery(searchParams);
+  const { data, isLoading } = useGetCharactersQuery(searchParams.toString());
 
   return (
     <>

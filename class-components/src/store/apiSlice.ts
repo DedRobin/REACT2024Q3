@@ -6,7 +6,7 @@ export const starWarsApi = createApi({
   reducerPath: "starWarsApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://swapi.dev/api/" }),
   endpoints: (builder) => ({
-    getCharacters: builder.query<SWPerson, URLSearchParams>({
+    getCharacters: builder.query<SWPerson, string>({
       query: (searchParams) => {
         if (searchParams) {
           return `people/?${searchParams}`;
