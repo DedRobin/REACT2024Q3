@@ -85,6 +85,7 @@ function Table({ person, checked, onChange, children }: TableProps) {
         name={person.name}
         type="checkbox"
         defaultChecked={checked}
+        checked={checked}
         onChange={(event: BaseSyntheticEvent) => onChange(event, person.name)}
       />
       <table className="person-table">{children}</table>
