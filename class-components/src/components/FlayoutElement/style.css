@@ -1,5 +1,6 @@
 .flayout-element {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   position: fixed;
   width: 90%;
@@ -7,17 +8,39 @@
   border-radius: 10px 10px 0px 0px;
   background-color: #ad66d5;
   gap: 10px;
-  transition: all 0.5s ease;
+  padding: 10px;
+  transition: all 0.2s;
 }
 
 .flayout-element.active {
-  padding: 10px;
   bottom: 0%;
 }
 
-.selected-person {
+.selected-people-list {
+  display: flex;
+  gap: 10px;
+}
+
+.selected-person-item {
+  cursor: default;
   border: #48036f solid 2px;
   border-radius: 10px;
   padding: 5px;
   background-color: #9f3ed5;
+}
+
+.selected-people-counter {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  padding: 10px;
+}
+
+.selected-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.selected-button {
+  background-color: #48036f;
 }

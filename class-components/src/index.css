@@ -79,6 +79,12 @@ td {
   word-break: break-all;
 }
 
+ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

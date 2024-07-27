@@ -27,10 +27,6 @@ export default function MainPage() {
                   searchParams={searchParams}
                 ></Paginator>
                 <Result results={data.results} />
-                <Paginator
-                  count={data.count}
-                  searchParams={searchParams}
-                ></Paginator>
               </>
             ) : (
               <div>No results</div>
