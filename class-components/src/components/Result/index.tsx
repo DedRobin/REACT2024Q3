@@ -13,10 +13,13 @@ import { resultAdded, resultRemoved } from "./slice";
 import { store } from "../../app/store";
 import { SwapiData } from "../../store/apiSlice";
 
+type ResultProps = {
+  results: SwapiData[];
+};
 type RootState = ReturnType<typeof store.getState>;
 type CallbackOnChange = (event: BaseSyntheticEvent, personName: string) => void;
 
-export default function Result({ results: people }: { results: SwapiData[] }) {
+export default function Result({ results: people }: ResultProps) {
   const [peopleList, setPeopleList] = useState<ReactNode[] | "No matches">();
   const dispatch = useDispatch();
   const peopleStore = useSelector((state: RootState) => state.results);

@@ -1,0 +1,23 @@
+.flayout-element {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  width: 90%;
+  bottom: -30%;
+  border-radius: 10px 10px 0px 0px;
+  background-color: #ad66d5;
+  gap: 10px;
+  transition: all 0.5s ease;
+}
+
+.flayout-element.active {
+  padding: 10px;
+  bottom: 0%;
+}
+
+.selected-person {
+  border: #48036f solid 2px;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #9f3ed5;
+}

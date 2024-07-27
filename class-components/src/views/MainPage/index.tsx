@@ -6,6 +6,7 @@ import Paginator from "../../components/Paginator";
 import Result from "../../components/Result";
 import { useGetCharactersQuery } from "../../store/apiSlice";
 import { TResponse } from "./services";
+import FlayoutElement from "../../components/FlayoutElement";
 
 export default function MainPage() {
   const { searchParams } = useLoaderData() as TResponse;
@@ -36,6 +37,7 @@ export default function MainPage() {
             )}
           </div>
         )}
+        <FlayoutElement />
       </ErrorBoundary>
     </>
   );
