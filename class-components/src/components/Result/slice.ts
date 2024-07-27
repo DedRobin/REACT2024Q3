@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export type ResultPayload = { name: string; selected: boolean };
+export type ResultPayload = { name: string };
 
 const initialState: ResultPayload[] = [];
 
@@ -11,15 +11,13 @@ export const resultSlice = createSlice({
     resultAdded(state, action) {
       state.push(action.payload);
     },
-    resultUpdated(state, action) {
-      const { name, selected } = action.payload;
-      const existingResult = state.find((result) => result.name === name);
-      if (existingResult) {
-        existingResult.selected = selected;
-      }
+    resultRemoved(state, action) {
+      const { name } = action.payload;
+
+      return state.filter((item) => item.name !== name);
     },
   },
 });
 
 export default resultSlice.reducer;
-export const { resultAdded, resultUpdated } = resultSlice.actions;
+export const { resultAdded, resultRemoved } = resultSlice.actions;

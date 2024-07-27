@@ -9,16 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "./style.css";
 import { toCapitalizeCase, removeUndercheckSymbol } from "../../utils/tools";
-import { resultAdded, ResultPayload, resultUpdated } from "./slice";
+import { resultAdded, resultRemoved } from "./slice";
 import { store } from "../../app/store";
 import { SwapiData } from "../../store/apiSlice";
 
 type RootState = ReturnType<typeof store.getState>;
-type TOnChange = (
-  event: BaseSyntheticEvent,
-  personInStore: ResultPayload | undefined,
-  personName: string,
-) => void;
+type CallbackOnChange = (event: BaseSyntheticEvent, personName: string) => void;
 
 export default function Result({ results: people }: { results: SwapiData[] }) {
   const [peopleList, setPeopleList] = useState<ReactNode[] | "No matches">();
@@ -26,18 +22,13 @@ export default function Result({ results: people }: { results: SwapiData[] }) {
   const peopleStore = useSelector((state: RootState) => state.results);
 
   const onChange = useCallback(
-    (
-      event: BaseSyntheticEvent,
-      personInStore: ResultPayload | undefined,
-      personName: string,
-    ) => {
+    (event: BaseSyntheticEvent, personName: string) => {
       const { target } = event;
       if (target instanceof HTMLInputElement) {
-        const selected = target.checked;
-        if (personInStore) {
-          dispatch(resultUpdated({ name: personName, selected: selected }));
+        if (target.checked) {
+          dispatch(resultAdded({ name: personName }));
         } else {
-          dispatch(resultAdded({ name: personName, selected: selected }));
+          dispatch(resultRemoved({ name: personName }));
         }
       }
     },
@@ -47,10 +38,9 @@ export default function Result({ results: people }: { results: SwapiData[] }) {
   useEffect(() => {
     const updatedPeopleList = people.map((person, index): ReactNode => {
       const personName = person.name;
-      const personInStore = peopleStore.find(
-        (item) => item.name === personName,
+      const checked = !!peopleStore.find(
+        (personFromStore) => personFromStore.name === personName,
       );
-      const checked = personInStore ? personInStore.selected : false;
 
       const rows = Object.keys(person)
         .slice(0, 8)
@@ -62,7 +52,6 @@ export default function Result({ results: people }: { results: SwapiData[] }) {
         <Table
           key={index}
           person={person}
-          personInStore={personInStore}
           checked={checked}
           onChange={onChange}
         >
@@ -80,19 +69,12 @@ export default function Result({ results: people }: { results: SwapiData[] }) {
 
 type TableProps = {
   person: SwapiData;
-  personInStore: ResultPayload | undefined;
   checked: boolean;
-  onChange: TOnChange;
+  onChange: CallbackOnChange;
   children: JSX.Element[];
 };
 
-function Table({
-  person,
-  personInStore,
-  checked,
-  onChange,
-  children,
-}: TableProps) {
+function Table({ person, checked, onChange, children }: TableProps) {
   return (
     <div className="person-item">
       <input
@@ -100,9 +82,7 @@ function Table({
         name={person.name}
         type="checkbox"
         defaultChecked={checked}
-        onChange={(event: BaseSyntheticEvent) =>
-          onChange(event, personInStore, person.name)
-        }
+        onChange={(event: BaseSyntheticEvent) => onChange(event, person.name)}
       />
       <table className="person-table">{children}</table>
     </div>
