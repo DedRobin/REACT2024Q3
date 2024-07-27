@@ -16,8 +16,11 @@ export const resultSlice = createSlice({
 
       return state.filter((item) => item.name !== name);
     },
+    clearResult(state) {
+      return state.filter(() => false);
+    },
   },
 });
 
 export default resultSlice.reducer;
-export const { resultAdded, resultRemoved } = resultSlice.actions;
+export const { resultAdded, resultRemoved, clearResult } = resultSlice.actions;

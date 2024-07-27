@@ -5,8 +5,10 @@
   position: fixed;
   width: 90%;
   bottom: -30%;
+  border: #ad66d5 solid 3px;
+  border-bottom: 0px;
   border-radius: 10px 10px 0px 0px;
-  background-color: #ad66d5;
+  background-color: #7507b4;
   gap: 10px;
   padding: 10px;
   transition: all 0.2s;
@@ -43,4 +45,5 @@
 
 .selected-button {
   background-color: #48036f;
+  border: #ad66d5 solid 3px;
 }
