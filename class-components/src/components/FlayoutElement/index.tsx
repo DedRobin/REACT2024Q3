@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { ResultPayload } from "../Result/slice";
 import Button from "../Button";
 import { clearResult } from "../Result/slice";
+import { saveData } from "./services";
 
 type RootState = ReturnType<typeof store.getState>;
 
@@ -23,8 +24,18 @@ export default function FlayoutElement() {
   }, [dispatch]);
 
   const download = useCallback(() => {
-    console.log("download");
-  }, []);
+    const csvArray = [];
+    const colums = Object.keys(selectedPeople[0]);
+
+    csvArray.push(`0,${colums.join(",")}`);
+    for (let i = 0; i < selectedPeople.length; i++) {
+      csvArray.push(`${i + 1},${Object.values(selectedPeople[i])}`);
+    }
+
+    const csv = csvArray.join("\n");
+
+    saveData(csv, selectedPeople.length);
+  }, [selectedPeople]);
 
   return (
     <div className={active ? "flayout-element active" : "flayout-element"}>

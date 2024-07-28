@@ -1,6 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export type ResultPayload = { name: string };
+export type ResultPayload = {
+  name: string;
+  height: string;
+  mass: string;
+  hairColor: string;
+  skinColor: string;
+  eyeColor: string;
+  birthday: string;
+  gender: string;
+};
 
 export const resultInitialState: ResultPayload[] = [];
 

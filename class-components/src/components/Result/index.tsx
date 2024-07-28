@@ -17,7 +17,7 @@ type ResultProps = {
   results: SwapiData[];
 };
 type RootState = ReturnType<typeof store.getState>;
-type CallbackOnChange = (event: BaseSyntheticEvent, personName: string) => void;
+type CallbackOnChange = (event: BaseSyntheticEvent, person: SwapiData) => void;
 
 export default function Result({ results: people }: ResultProps) {
   const [peopleList, setPeopleList] = useState<ReactNode[] | "No matches">();
@@ -25,13 +25,13 @@ export default function Result({ results: people }: ResultProps) {
   const peopleStore = useSelector((state: RootState) => state.results);
 
   const onChange = useCallback(
-    (event: BaseSyntheticEvent, personName: string) => {
+    (event: BaseSyntheticEvent, person: SwapiData) => {
       const { target } = event;
       if (target instanceof HTMLInputElement) {
         if (target.checked) {
-          dispatch(resultAdded({ name: personName }));
+          dispatch(resultAdded({ ...person }));
         } else {
-          dispatch(resultRemoved({ name: personName }));
+          dispatch(resultRemoved({ name: person.name }));
         }
       }
     },
@@ -85,7 +85,7 @@ function Table({ person, checked, onChange, children }: TableProps) {
         name={person.name}
         type="checkbox"
         checked={checked}
-        onChange={(event: BaseSyntheticEvent) => onChange(event, person.name)}
+        onChange={(event: BaseSyntheticEvent) => onChange(event, person)}
       />
       <table className="person-table">{children}</table>
     </div>
@@ -101,7 +101,7 @@ function Row({ index, person, field }: RowProps) {
         <td className="person-field">
           {toCapitalizeCase(removeUndercheckSymbol(field))}
         </td>
-        <td className="person-text">{person[field]}</td>
+        <td className="person-text">{person[field as keyof SwapiData]}</td>
       </tr>
     </tbody>
   );

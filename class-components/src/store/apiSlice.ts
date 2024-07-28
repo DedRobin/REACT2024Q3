@@ -1,6 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export type SwapiData = { [key: string]: string };
+export type SwapiData = {
+  name: string;
+  height: string;
+  mass: string;
+  hairColor: string;
+  skinColor: string;
+  eyeColor: string;
+  birthday: string;
+  gender: string;
+};
 
 export type SwapiResponse = {
   count: number;
