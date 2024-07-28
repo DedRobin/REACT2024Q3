@@ -1,9 +1,9 @@
+import { SyntheticEvent, useCallback, useState } from "react";
 import { RouterProvider } from "react-router-dom";
 import { router } from "../views/root";
 
 import "./style.css";
 import ThemeSwitch from "../components/ThemeSwitch";
-import { SyntheticEvent, useCallback, useState } from "react";
 import { Theme, ThemeContex } from "./contex";
 
 export default function App() {
@@ -18,9 +18,11 @@ export default function App() {
   }, []);
 
   return (
-    <ThemeContex.Provider value={theme}>
-      <ThemeSwitch onClick={switchTheme} />
-      <RouterProvider router={router} />;
-    </ThemeContex.Provider>
+    <div className={theme === "light" ? "app light" : "app dark"}>
+      <ThemeContex.Provider value={theme}>
+        <ThemeSwitch onClick={switchTheme} />
+        <RouterProvider router={router} />
+      </ThemeContex.Provider>
+    </div>
   );
 }

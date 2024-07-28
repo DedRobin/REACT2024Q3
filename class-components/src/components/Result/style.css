@@ -57,3 +57,14 @@
 .person-checkbox {
   margin: 10px;
 }
+
+.people.light .person-item,
+.people.light .person-table,
+.people.light tbody,
+.people.light .person-field,
+.people.light .person-text,
+.people.light .person-row {
+  background-color: #ad66d5;
+  border-color: #48036f;
+  outline-color: #48036f;
+}

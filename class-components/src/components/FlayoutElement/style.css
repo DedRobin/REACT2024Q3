@@ -4,7 +4,7 @@
   justify-content: center;
   position: fixed;
   width: 90%;
-  bottom: -30%;
+  bottom: -400px;
   border: #ad66d5 solid 3px;
   border-bottom: 0px;
   border-radius: 10px 10px 0px 0px;
@@ -15,7 +15,7 @@
 }
 
 .flayout-element.active {
-  bottom: 0%;
+  bottom: 0px;
 }
 
 .selected-people-list {

@@ -6,6 +6,7 @@ import Button from "../Button";
 import ThrowErrorButton from "../ErrorButton";
 import Input from "../Input";
 import { useSearchQuery } from "../../hooks/customHooks";
+import { ThemeContex } from "../../app/contex";
 
 export default function Search() {
   const submit = useSubmit();
@@ -26,20 +27,31 @@ export default function Search() {
   );
 
   return (
-    <div className="search">
-      <h1 className="heading">Star Wars (People)</h1>
-      <Form className="search-form" onSubmit={handleSubmit}>
-        <Input
-          placeholder="Enter text..."
-          className="search-input"
-          name="search"
-          defaultValue={searchQuery}
-        />
-        <Button className="search-button" type="submit">
-          Search
-        </Button>
-      </Form>
-      <ThrowErrorButton />
-    </div>
+    <ThemeContex.Consumer>
+      {(value) => (
+        <div className={value === "light" ? "search light" : "search dark"}>
+          <h1 className="heading">Star Wars (People)</h1>
+          <Form className="search-form" onSubmit={handleSubmit}>
+            <Input
+              placeholder="Enter text..."
+              className={
+                value === "light" ? "search-input light" : "search-input dark"
+              }
+              name="search"
+              defaultValue={searchQuery}
+            />
+            <Button
+              className={
+                value === "light" ? "search-button light" : "search-button dark"
+              }
+              type="submit"
+            >
+              Search
+            </Button>
+          </Form>
+          <ThrowErrorButton />
+        </div>
+      )}
+    </ThemeContex.Consumer>
   );
 }

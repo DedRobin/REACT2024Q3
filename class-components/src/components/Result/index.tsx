@@ -12,6 +12,7 @@ import { toCapitalizeCase, removeUndercheckSymbol } from "../../utils/tools";
 import { resultAdded, resultRemoved } from "./slice";
 import { store } from "../../app/store";
 import { SwapiData } from "../../store/apiSlice";
+import { ThemeContex } from "../../app/contex";
 
 type ResultProps = {
   results: SwapiData[];
@@ -67,7 +68,15 @@ export default function Result({ results: people }: ResultProps) {
     else setPeopleList(updatedPeopleList);
   }, [onChange, people, peopleStore]);
 
-  return <div className="people">{peopleList}</div>;
+  return (
+    <ThemeContex.Consumer>
+      {(value) => (
+        <div className={value === "light" ? "people light" : "people dark"}>
+          {peopleList}
+        </div>
+      )}
+    </ThemeContex.Consumer>
+  );
 }
 
 type TableProps = {

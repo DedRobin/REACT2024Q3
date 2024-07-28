@@ -4,6 +4,26 @@
   align-items: center;
   margin: 0 auto;
   min-height: 100vh;
+  width: 100%;
   gap: 10px;
   position: relative;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.light {
+  background-color: #ad66d5;
+  border-color: #48036f;
+  transition: background-color 0.2s;
+}
+
+.dark {
+  background-color: #48036f;
+  border-color: #ad66d5;
 }
