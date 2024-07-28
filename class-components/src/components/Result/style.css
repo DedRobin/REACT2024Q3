@@ -1,0 +1,70 @@
+.person-heading {
+  font-size: 2rem;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 10px 200px 10px;
+}
+
+.people {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.person-item {
+  border: 2px #ad66d5 solid;
+  border-radius: 10px;
+  display: flex;
+  align-items: start;
+  width: 350px;
+  overflow: hidden;
+  justify-self: stretch;
+}
+
+.person-table {
+  width: 100%;
+}
+
+.person-field,
+.person-text {
+  outline: #ad66d5 solid 2px;
+}
+
+.person-field,
+.person-text {
+  padding: 10px;
+}
+
+.person-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.person-field {
+  font-weight: bold;
+}
+
+.person-text {
+  font-style: italic;
+  word-break: break-all;
+}
+
+.person-checkbox {
+  margin: 10px;
+}
+
+.people.light .person-item,
+.people.light .person-table,
+.people.light tbody,
+.people.light .person-field,
+.people.light .person-text,
+.people.light .person-row {
+  background-color: #ad66d5;
+  border-color: #48036f;
+  outline-color: #48036f;
+}

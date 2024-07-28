@@ -1,0 +1,17 @@
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-form {
+  display: flex;
+  gap: 10px;
+}
+
+.search-button.light,
+.search-input.light,
+.error-button.light {
+  background-color: rgb(146, 8, 238);
+}
