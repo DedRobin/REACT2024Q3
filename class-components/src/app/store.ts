@@ -1,16 +1,31 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import searchParamsLoader from "../components/Result/slice";
+import resultReducer from "../components/Result/slice";
 import { starWarsApi } from "../store/apiSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 export const store = configureStore({
   reducer: {
-    results: searchParamsLoader,
+    results: resultReducer,
     [starWarsApi.reducerPath]: starWarsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(starWarsApi.middleware),
 });
+
+export const rootReducer = combineReducers({
+  results: resultReducer,
+});
+
+export function setupStore(preloadedState?: Partial<RootState>) {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+}
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore["dispatch"];
 
 setupListeners(store.dispatch);

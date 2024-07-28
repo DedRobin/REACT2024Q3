@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export type ResultPayload = { name: string };
 
-const initialState: ResultPayload[] = [];
+export const resultInitialState: ResultPayload[] = [];
 
 export const resultSlice = createSlice({
   name: "results",
-  initialState,
+  initialState: resultInitialState,
   reducers: {
     resultAdded(state, action) {
       state.push(action.payload);
@@ -14,7 +14,7 @@ export const resultSlice = createSlice({
     resultRemoved(state, action) {
       const { name } = action.payload;
 
-      return state.filter((item) => item.name !== name);
+      return state.filter((person) => person.name !== name);
     },
     clearResult(state) {
       return state.filter(() => false);
