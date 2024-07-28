@@ -25,12 +25,41 @@ describe("Result Initial State", () => {
 
   test("Result removed", () => {
     const stateBeforeRemoving = [
-      { name: "Foo" },
-      { name: "Bar" },
-      { name: "Extra" },
+      {
+        name: "name1",
+        height: "height1",
+        mass: "mass1",
+        hairColor: "hair1",
+        skinColor: "skin1",
+        eyeColor: "eye1",
+        birthday: "birthday1",
+        gender: "gender1",
+      },
+      {
+        name: "name2",
+        height: "height2",
+        mass: "mass2",
+        hairColor: "hair2",
+        skinColor: "skin2",
+        eyeColor: "eye2",
+        birthday: "birthday2",
+        gender: "gender2",
+      },
     ];
-    const stateAfterRemoving = [{ name: "Foo" }, { name: "Bar" }];
-    const payload = { name: "Extra" };
+    const stateAfterRemoving = [
+      {
+        name: "name1",
+        height: "height1",
+        mass: "mass1",
+        hairColor: "hair1",
+        skinColor: "skin1",
+        eyeColor: "eye1",
+        birthday: "birthday1",
+        gender: "gender1",
+      },
+    ];
+
+    const payload = { name: "name2" };
     const currentState = resultReducer(
       stateBeforeRemoving,
       resultRemoved(payload),
@@ -40,7 +69,18 @@ describe("Result Initial State", () => {
   });
 
   test("Clear result", () => {
-    const stateBeforeClearing = [{ name: "Foo" }, { name: "Bar" }];
+    const stateBeforeClearing = [
+      {
+        name: "name",
+        height: "height",
+        mass: "mass",
+        hairColor: "hair",
+        skinColor: "skin",
+        eyeColor: "eye",
+        birthday: "birthday",
+        gender: "gender",
+      },
+    ];
     const currentState = resultReducer(stateBeforeClearing, clearResult());
 
     expect(currentState).toStrictEqual([]);
