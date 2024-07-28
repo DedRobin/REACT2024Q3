@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, test } from "vitest";
 import resultReducer, {
   resultInitialState,
   resultAdded,
@@ -7,13 +7,13 @@ import resultReducer, {
 } from "../slice";
 
 describe("Result Initial State", () => {
-  it("Initial state", () => {
+  test("Initial state", () => {
     const state = resultReducer(resultInitialState, { type: "unknown" });
 
     expect(state).toBe(resultInitialState);
   });
 
-  it("Result added", () => {
+  test("Result added", () => {
     const payload = { name: "Foo" };
     const currentState = resultReducer(
       resultInitialState,
@@ -23,7 +23,7 @@ describe("Result Initial State", () => {
     expect(currentState[0]).toBe(payload);
   });
 
-  it("Result removed", () => {
+  test("Result removed", () => {
     const stateBeforeRemoving = [
       { name: "Foo" },
       { name: "Bar" },
@@ -39,7 +39,7 @@ describe("Result Initial State", () => {
     expect(currentState).toStrictEqual(stateAfterRemoving);
   });
 
-  it("Clear result", () => {
+  test("Clear result", () => {
     const stateBeforeClearing = [{ name: "Foo" }, { name: "Bar" }];
     const currentState = resultReducer(stateBeforeClearing, clearResult());
 
