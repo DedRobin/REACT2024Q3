@@ -12,6 +12,6 @@ export default function ErrorPage() {
       </div>
     );
   } else {
-    return <div>Oops</div>;
+    return <div className="error-page">Oops</div>;
   }
 }

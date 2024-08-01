@@ -10,5 +10,6 @@ describe("<Search/>", () => {
     renderWithRouterProvider(<Search />);
 
     expect(screen.getByText("Star Wars (People)")).toBeInTheDocument();
+    expect(screen.getByText(/Search/i)).toBeInTheDocument();
   });
 });

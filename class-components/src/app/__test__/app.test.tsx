@@ -13,7 +13,7 @@ describe("<App/>", async () => {
         <App />
       </div>,
     );
-    expect(screen.getByTestId("app-testid")).toBeInTheDocument();
+    expect(screen.getByTestId(testId)).toBeInTheDocument();
   });
 
   test("Switch theme", () => {

@@ -21,7 +21,7 @@ export default function Paginator({ count, searchParams }: PaginatorProps) {
   const changePage = (page: string) => {
     setCurrentPage(page);
   };
-  [];
+
   const mutatePage = useCallback(
     (
       searchParams: URLSearchParams,

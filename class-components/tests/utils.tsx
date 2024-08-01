@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 
 import { AppStore, RootState, setupStore } from "../src/app/store";
+import { TResponse } from "../src/views/MainPage/services";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: RootState;
@@ -25,11 +26,15 @@ export function renderWithStoreProvider(
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }
 
-export function renderWithRouterProvider(ui: React.ReactElement) {
+export function renderWithRouterProvider(
+  ui: React.ReactElement,
+  loader?: () => TResponse,
+) {
   const router = createMemoryRouter([
     {
       path: "/",
       element: ui,
+      loader,
     },
   ]);
   return render(<RouterProvider router={router} />);
