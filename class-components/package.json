@@ -12,8 +12,7 @@
     "preview": "vite preview",
     "prepare": "cd .. && husky class-components/.husky",
     "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:browser": "vitest --workspace=vitest.workspace.ts"
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
@@ -34,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
     "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^2.0.4",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",

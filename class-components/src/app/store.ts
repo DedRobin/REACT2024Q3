@@ -17,11 +17,18 @@ export const rootReducer = combineReducers({
   results: resultReducer,
 });
 
-export function setupStore(preloadedState?: Partial<RootState>) {
-  return configureStore({
-    reducer: rootReducer,
-    preloadedState,
-  });
+export function setupStore(preloadedState?: RootState) {
+  if (preloadedState) {
+    return configureStore({
+      reducer: {
+        results: resultReducer,
+        [starWarsApi.reducerPath]: starWarsApi.reducer,
+      },
+      middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(starWarsApi.middleware),
+      preloadedState,
+    });
+  } else return store;
 }
 
 export type RootState = ReturnType<typeof rootReducer>;

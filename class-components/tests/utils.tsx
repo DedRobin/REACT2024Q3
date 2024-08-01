@@ -7,14 +7,14 @@ import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { AppStore, RootState, setupStore } from "../src/app/store";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
-  preloadedState?: Partial<RootState>;
+  preloadedState?: RootState;
   store?: AppStore;
 }
 
 export function renderWithStoreProvider(
   ui: React.ReactElement,
   {
-    preloadedState = {},
+    preloadedState = { results: [] },
     store = setupStore(preloadedState),
     ...renderOptions
   }: ExtendedRenderOptions = {},
