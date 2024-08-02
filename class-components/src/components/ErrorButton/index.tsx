@@ -1,11 +1,14 @@
 import { useState } from "react";
 import Button from "../Button";
-import ComponentWithError from "../ComponentWithError";
 import { ThemeContex } from "../../app/contex";
 
 export default function ThrowErrorButton() {
-  const [errorIsRendered, setErrorIsRendered] = useState(false);
+  const [isError, setIsError] = useState(false);
 
+  if (isError)
+    throw new Error(
+      "Hi. I'm 'ThrowErrorButton' component. This error was issued by me.",
+    );
   return (
     <ThemeContex.Consumer>
       {(value) => (
@@ -16,12 +19,11 @@ export default function ThrowErrorButton() {
             }
             type="button"
             onClick={() => {
-              setErrorIsRendered(true);
+              setIsError(true);
             }}
           >
             Throw an Error
           </Button>
-          {errorIsRendered ? <ComponentWithError throwError={true} /> : null}
         </>
       )}
     </ThemeContex.Consumer>
