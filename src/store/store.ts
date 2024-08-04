@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import resultReducer from "../app/components/Result/slice";
+import resultReducer from "../app/components/Results/slice";
 import { starWarsApi } from "../store/apiSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
 

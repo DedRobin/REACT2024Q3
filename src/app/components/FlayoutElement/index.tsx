@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 import { useCallback, useEffect, useState } from "react";
-import { ResultPayload } from "../Result/slice";
+import { ResultPayload } from "../Results/slice";
 import Button from "../Button";
-import { clearResult } from "../Result/slice";
+import { clearResult } from "../Results/slice";
 import { saveData } from "./services";
 import { store } from "../../../store/store";
 

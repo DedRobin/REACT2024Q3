@@ -3,7 +3,7 @@ import Search from "../../app/components/Search";
 import Loader from "../../app/components/Loader";
 import ErrorBoundary from "../../app/components/ErrorBoundary";
 import Paginator from "../../app/components/Paginator";
-import Result from "../../app/components/Result";
+import Results from "../../app/components/Results";
 import FlayoutElement from "../../app/components/FlayoutElement";
 
 export default function Main() {
@@ -23,7 +23,7 @@ export default function Main() {
             {data ? (
               <>
                 <Paginator count={data.count}></Paginator>
-                <Result results={data.results} />
+                <Results results={data.results} />
               </>
             ) : (
               <div>No results</div>

@@ -20,7 +20,7 @@ type ResultProps = {
 type RootState = ReturnType<typeof store.getState>;
 type CallbackOnChange = (event: BaseSyntheticEvent, person: SwapiData) => void;
 
-export default function Result({ results: people }: ResultProps) {
+export default function Results({ results: people }: ResultProps) {
   const [peopleList, setPeopleList] = useState<ReactNode[] | "No matches">();
   const dispatch = useDispatch();
   const peopleStore = useSelector((state: RootState) => state.results);
