@@ -24,7 +24,8 @@ export default function Search() {
         if (searchValue != null) {
           setSearchQuery(searchValue.toString());
           const newSearchParams = new URLSearchParams(searchParams);
-          newSearchParams.set("search", searchValue.toString());
+          if (searchValue == "") newSearchParams.delete("search");
+          else newSearchParams.set("search", searchValue.toString());
           router.push(`?${newSearchParams}`);
         }
       }
