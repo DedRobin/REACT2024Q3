@@ -11,7 +11,7 @@
     "lint:fix": "eslint . --fix",
     "format:fix": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc",
     "preview": "vite preview",
-    "prepare": "cd .. && husky class-components/.husky",
+    "prepare": "husky",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
