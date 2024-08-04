@@ -4,6 +4,7 @@
   display: flex;
   gap: 10px;
   padding: 40px 0px;
+  z-index: 2;
 }
 
 .page,

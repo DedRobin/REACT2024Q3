@@ -1,0 +1,15 @@
+.person-card {
+  width: 0%;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  outline: 4px #48036f solid;
+  border-radius: 10px;
+  padding: 10px;
+  height: fit-content;
+  position: sticky;
+  top: 25%;
+}
+
+.person-card.active {
+  width: 100%;
+}

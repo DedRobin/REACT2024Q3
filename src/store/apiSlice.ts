@@ -9,6 +9,7 @@ export type SwapiData = {
   eyeColor: string;
   birthday: string;
   gender: string;
+  url: string;
 };
 
 export type SwapiResponse = {
@@ -27,10 +28,10 @@ export const starWarsApi = createApi({
         if (searchParams) {
           return `people/?${searchParams}`;
         }
-        return `people/`;
+        return `people`;
       },
     }),
-    getCharacterById: builder.query<SwapiResponse, string>({
+    getCharacterById: builder.query<SwapiData, string>({
       query: (id) => `people/${id}`,
     }),
   }),

@@ -13,15 +13,18 @@ import { store } from "../../../store/store";
 import { SwapiData } from "../../../store/apiSlice";
 import { ThemeContex } from "../../../views/Main/contex";
 import { removeUndercheckSymbol, toCapitalizeCase } from "../../../utils/tools";
+import Result from "../Result";
 
 type ResultProps = {
   results: SwapiData[];
 };
 type RootState = ReturnType<typeof store.getState>;
 type CallbackOnChange = (event: BaseSyntheticEvent, person: SwapiData) => void;
+type CallbackOnClick = (event: BaseSyntheticEvent, person: SwapiData) => void;
 
 export default function Results({ results: people }: ResultProps) {
   const [peopleList, setPeopleList] = useState<ReactNode[] | "No matches">();
+  const [activePerson, setActivePerson] = useState("");
   const dispatch = useDispatch();
   const peopleStore = useSelector((state: RootState) => state.results);
 
@@ -37,6 +40,18 @@ export default function Results({ results: people }: ResultProps) {
       }
     },
     [dispatch],
+  );
+
+  const showCard = useCallback(
+    (event: BaseSyntheticEvent, person: SwapiData) => {
+      const { target } = event;
+      console.log(target);
+      if (!(target instanceof HTMLInputElement)) {
+        const personId = person.url.split("/").at(-2);
+        if (personId) setActivePerson(personId);
+      }
+    },
+    [],
   );
 
   useEffect(() => {
@@ -58,6 +73,7 @@ export default function Results({ results: people }: ResultProps) {
           person={person}
           checked={checked}
           onChange={onChange}
+          onClick={showCard}
         >
           {rows}
         </Table>
@@ -66,13 +82,14 @@ export default function Results({ results: people }: ResultProps) {
 
     if (!updatedPeopleList.length) setPeopleList("No matches");
     else setPeopleList(updatedPeopleList);
-  }, [onChange, people, peopleStore]);
+  }, [onChange, people, peopleStore, showCard]);
 
   return (
     <ThemeContex.Consumer>
       {(value) => (
         <div className={value === "light" ? "people light" : "people dark"}>
-          {peopleList}
+          <div className="people-list">{peopleList}</div>
+          {activePerson ? <Result personId={activePerson} /> : null}
         </div>
       )}
     </ThemeContex.Consumer>
@@ -83,12 +100,16 @@ type TableProps = {
   person: SwapiData;
   checked: boolean;
   onChange: CallbackOnChange;
+  onClick: CallbackOnClick;
   children: JSX.Element[];
 };
 
-function Table({ person, checked, onChange, children }: TableProps) {
+function Table({ person, checked, onChange, onClick, children }: TableProps) {
   return (
-    <div className="person-item">
+    <div
+      className="person-item"
+      onClick={(event: BaseSyntheticEvent) => onClick(event, person)}
+    >
       <input
         className="person-checkbox"
         name={person.name}

@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import "./style.css";
 
 import { useGetCharactersQuery } from "../../store/apiSlice";
 import Loader from "../../app/components/Loader";
