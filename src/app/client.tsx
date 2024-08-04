@@ -5,8 +5,8 @@ import { Provider } from "react-redux";
 
 import { Theme, ThemeContex } from "../views/Main/contex";
 import { store } from "../store/store";
-import Main from "../views/Main";
 import ThemeSwitch from "./components/ThemeSwitch";
+import MainPage from "../views/Main";
 
 export default function App() {
   const [theme, setTheme] = useState<Theme>("light");
@@ -24,7 +24,7 @@ export default function App() {
       <div className={theme === "light" ? "app light" : "app dark"}>
         <ThemeContex.Provider value={theme}>
           <ThemeSwitch onClick={switchTheme} />
-          <Main />
+          <MainPage />
         </ThemeContex.Provider>
       </div>
     </Provider>

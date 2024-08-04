@@ -5,9 +5,10 @@ import Link from "next/link";
 
 type PaginatorProps = {
   count: number;
+  refetchResult: () => void;
 };
 
-export default function Paginator({ count }: PaginatorProps) {
+export default function Paginator({ count, refetchResult }: PaginatorProps) {
   const searchParams = new URL(location.href).searchParams;
   const [currentPage, setCurrentPage] = useState<string>(
     searchParams.get("page") || "1",
@@ -66,7 +67,14 @@ export default function Paginator({ count }: PaginatorProps) {
   }
 
   return (
-    <div className="paginator">
+    <div
+      className="paginator"
+      onClick={(event) => {
+        if (event.target instanceof HTMLAnchorElement) {
+          refetchResult();
+        }
+      }}
+    >
       <Link
         href={arrowPrevPage}
         className="arrow arrow-prev"

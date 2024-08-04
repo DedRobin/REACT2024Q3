@@ -6,9 +6,12 @@ import ThrowErrorButton from "../ErrorButton";
 import Input from "../Input";
 import { useSearchQuery } from "./customHooks";
 import { ThemeContex } from "../../../views/Main/contex";
+import { useSearchParams, useRouter } from "next/navigation";
 
 export default function Search() {
   const [searchQuery, setSearchQuery] = useSearchQuery();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
   const handleSubmit = useCallback(
     (event: FormEvent) => {
@@ -17,13 +20,16 @@ export default function Search() {
       const form = event.currentTarget;
       if (form instanceof HTMLFormElement) {
         const formData = new FormData(form);
-        const search = formData.get("search");
-        if (search) {
-          setSearchQuery(search.toString());
+        const searchValue = formData.get("search");
+        if (searchValue != null) {
+          setSearchQuery(searchValue.toString());
+          const newSearchParams = new URLSearchParams(searchParams);
+          newSearchParams.set("search", searchValue.toString());
+          router.push(`?${newSearchParams}`);
         }
       }
     },
-    [setSearchQuery],
+    [router, searchParams, setSearchQuery],
   );
 
   return (
