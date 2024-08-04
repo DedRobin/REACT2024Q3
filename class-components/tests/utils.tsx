@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 
 import { AppStore, RootState, setupStore } from "../src/app/store";
-import { TResponse } from "../src/views/MainPage/services";
+import { TResponse } from "../src/app/MainPage/services";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: RootState;

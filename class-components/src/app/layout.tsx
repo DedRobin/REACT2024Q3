@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "My App",
+  title: "Star Wars API",
   description: "My App is a...",
 };
 

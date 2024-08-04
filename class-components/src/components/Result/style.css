@@ -20,7 +20,7 @@
   border: 2px #ad66d5 solid;
   border-radius: 10px;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   width: 350px;
   overflow: hidden;
   justify-self: stretch;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../Button";
-import { ThemeContex } from "../../app/contex";
+import { ThemeContex } from "../../views/Main/contex";
 
 export default function ThrowErrorButton() {
   const [isError, setIsError] = useState(false);

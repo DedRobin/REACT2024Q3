@@ -1,31 +1,28 @@
-import { useLoaderData } from "react-router-dom";
 import Search from "../../components/Search";
 import Loader from "../../components/Loader";
-import ErrorBoundary from "../../components/ErrorBoundary";
 import Paginator from "../../components/Paginator";
 import Result from "../../components/Result";
 import { useGetCharactersQuery } from "../../store/apiSlice";
-import { TResponse } from "./services";
+import ErrorBoundary from "../../components/ErrorBoundary";
 import FlayoutElement from "../../components/FlayoutElement";
 
-export default function MainPage() {
-  const { searchParams } = useLoaderData() as TResponse;
-  const { data, isFetching } = useGetCharactersQuery(searchParams.toString());
+export default function Main() {
+  const searchParams = new URLSearchParams("page=2");
+  const { data, isFetching, isLoading } = useGetCharactersQuery(
+    searchParams.toString(),
+  );
 
   return (
     <>
       <ErrorBoundary>
         <Search />
-        {isFetching ? (
+        {isLoading || isFetching ? (
           <Loader />
         ) : (
           <div className="result">
             {data ? (
               <>
-                <Paginator
-                  count={data.count}
-                  searchParams={searchParams}
-                ></Paginator>
+                <Paginator count={data.count}></Paginator>
                 <Result results={data.results} />
               </>
             ) : (

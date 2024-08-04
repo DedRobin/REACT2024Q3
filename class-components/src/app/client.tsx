@@ -1,12 +1,12 @@
+"use client";
+
 import { SyntheticEvent, useCallback, useState } from "react";
-import { RouterProvider } from "react-router-dom";
-import { router } from "../views/root";
 import { Provider } from "react-redux";
 
-import "./style.css";
 import ThemeSwitch from "../components/ThemeSwitch";
-import { Theme, ThemeContex } from "./contex";
-import { store } from "./store";
+import { Theme, ThemeContex } from "../views/Main/contex";
+import { store } from "../store/store";
+import Main from "../views/Main";
 
 export default function App() {
   const [theme, setTheme] = useState<Theme>("light");
@@ -24,7 +24,7 @@ export default function App() {
       <div className={theme === "light" ? "app light" : "app dark"}>
         <ThemeContex.Provider value={theme}>
           <ThemeSwitch onClick={switchTheme} />
-          <RouterProvider router={router} />
+          <Main />
         </ThemeContex.Provider>
       </div>
     </Provider>

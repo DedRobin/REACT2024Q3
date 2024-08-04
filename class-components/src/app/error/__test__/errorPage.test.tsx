@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { screen } from "@testing-library/react";
-import ErrorPage from "..";
+import ErrorPage from "../page";
 import { renderWithRouterProvider } from "../../../../tests/utils";
 
 describe("<App/>", async () => {

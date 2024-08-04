@@ -1,29 +1,29 @@
-import { Form, useSubmit } from "react-router-dom";
 import { FormEvent, useCallback } from "react";
 import "./style.css";
 
 import Button from "../Button";
 import ThrowErrorButton from "../ErrorButton";
 import Input from "../Input";
-import { useSearchQuery } from "../../hooks/customHooks";
-import { ThemeContex } from "../../app/contex";
+import { useSearchQuery } from "./customHooks";
+import { ThemeContex } from "../../views/Main/contex";
 
 export default function Search() {
-  const submit = useSubmit();
-
   const [searchQuery, setSearchQuery] = useSearchQuery();
 
   const handleSubmit = useCallback(
     (event: FormEvent) => {
+      event.preventDefault();
+
       const form = event.currentTarget;
       if (form instanceof HTMLFormElement) {
-        submit(form);
         const formData = new FormData(form);
         const search = formData.get("search");
-        if (search) setSearchQuery(search.toString());
+        if (search) {
+          setSearchQuery(search.toString());
+        }
       }
     },
-    [setSearchQuery, submit],
+    [setSearchQuery],
   );
 
   return (
@@ -31,7 +31,7 @@ export default function Search() {
       {(value) => (
         <div className={value === "light" ? "search light" : "search dark"}>
           <h1 className="heading">Star Wars (People)</h1>
-          <Form className="search-form" onSubmit={handleSubmit}>
+          <form className="search-form" method="get" onSubmit={handleSubmit}>
             <Input
               placeholder="Enter text..."
               className={
@@ -48,7 +48,7 @@ export default function Search() {
             >
               Search
             </Button>
-          </Form>
+          </form>
           <ThrowErrorButton />
         </div>
       )}

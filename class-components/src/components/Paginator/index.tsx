@@ -1,14 +1,14 @@
 import { ReactElement, useCallback, useEffect, useState } from "react";
 
 import "./style.css";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 type PaginatorProps = {
   count: number;
-  searchParams: URLSearchParams;
 };
 
-export default function Paginator({ count, searchParams }: PaginatorProps) {
+export default function Paginator({ count }: PaginatorProps) {
+  const searchParams = new URL(location.href).searchParams;
   const [currentPage, setCurrentPage] = useState<string>(
     searchParams.get("page") || "1",
   );
@@ -49,10 +49,10 @@ export default function Paginator({ count, searchParams }: PaginatorProps) {
   for (let page = 1; page <= pages; page++) {
     const params = new URLSearchParams(searchParams);
     params.set("page", `${page}`);
-    const to = `?${params.toString()}`;
+    const href = `?${params.toString()}`;
     pagesElements.push(
       <Link
-        to={to}
+        href={href}
         key={page}
         className="page"
         style={
@@ -68,7 +68,7 @@ export default function Paginator({ count, searchParams }: PaginatorProps) {
   return (
     <div className="paginator">
       <Link
-        to={arrowPrevPage}
+        href={arrowPrevPage}
         className="arrow arrow-prev"
         style={
           +currentPage === 1 ? { pointerEvents: "none", opacity: 0.4 } : {}
@@ -79,7 +79,7 @@ export default function Paginator({ count, searchParams }: PaginatorProps) {
       </Link>
       {pagesElements}
       <Link
-        to={arrowNextPage}
+        href={arrowNextPage}
         className="arrow arrow-next"
         style={
           +currentPage === pagesElements.length
