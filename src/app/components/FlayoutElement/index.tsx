@@ -5,7 +5,7 @@ import { ResultPayload } from "../Result/slice";
 import Button from "../Button";
 import { clearResult } from "../Result/slice";
 import { saveData } from "./services";
-import { store } from "../../store/store";
+import { store } from "../../../store/store";
 
 type RootState = ReturnType<typeof store.getState>;
 

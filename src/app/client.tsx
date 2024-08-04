@@ -3,10 +3,10 @@
 import { SyntheticEvent, useCallback, useState } from "react";
 import { Provider } from "react-redux";
 
-import ThemeSwitch from "../components/ThemeSwitch";
 import { Theme, ThemeContex } from "../views/Main/contex";
 import { store } from "../store/store";
 import Main from "../views/Main";
+import ThemeSwitch from "./components/ThemeSwitch";
 
 export default function App() {
   const [theme, setTheme] = useState<Theme>("light");

@@ -1,10 +1,10 @@
-import Search from "../../components/Search";
-import Loader from "../../components/Loader";
-import Paginator from "../../components/Paginator";
-import Result from "../../components/Result";
 import { useGetCharactersQuery } from "../../store/apiSlice";
-import ErrorBoundary from "../../components/ErrorBoundary";
-import FlayoutElement from "../../components/FlayoutElement";
+import Search from "../../app/components/Search";
+import Loader from "../../app/components/Loader";
+import ErrorBoundary from "../../app/components/ErrorBoundary";
+import Paginator from "../../app/components/Paginator";
+import Result from "../../app/components/Result";
+import FlayoutElement from "../../app/components/FlayoutElement";
 
 export default function Main() {
   const searchParams = new URLSearchParams("page=2");

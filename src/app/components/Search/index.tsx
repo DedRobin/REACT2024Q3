@@ -5,7 +5,7 @@ import Button from "../Button";
 import ThrowErrorButton from "../ErrorButton";
 import Input from "../Input";
 import { useSearchQuery } from "./customHooks";
-import { ThemeContex } from "../../views/Main/contex";
+import { ThemeContex } from "../../../views/Main/contex";
 
 export default function Search() {
   const [searchQuery, setSearchQuery] = useSearchQuery();

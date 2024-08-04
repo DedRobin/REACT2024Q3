@@ -1,14 +1,13 @@
 import { describe, expect, test } from "vitest";
 import "@testing-library/jest-dom/vitest";
-import { screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import ErrorPage from "../page";
-import { renderWithRouterProvider } from "../../../../tests/utils";
 
 describe("<App/>", async () => {
   const testId = "error-testid";
 
   test("<ErrorPage/> should be mounted", () => {
-    const { container } = renderWithRouterProvider(
+    const { container } = render(
       <div data-testid={testId}>
         <ErrorPage />
       </div>,

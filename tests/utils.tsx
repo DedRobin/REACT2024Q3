@@ -3,9 +3,7 @@ import { render } from "@testing-library/react";
 import type { RenderOptions } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
-
-import { AppStore, RootState, setupStore } from "../src/app/store";
-import { TResponse } from "../src/app/MainPage/services";
+import { AppStore, RootState, setupStore } from "../src/store/store";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: RootState;
@@ -26,15 +24,11 @@ export function renderWithStoreProvider(
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }
 
-export function renderWithRouterProvider(
-  ui: React.ReactElement,
-  loader?: () => TResponse,
-) {
+export function renderWithRouterProvider(ui: React.ReactElement) {
   const router = createMemoryRouter([
     {
       path: "/",
       element: ui,
-      loader,
     },
   ]);
   return render(<RouterProvider router={router} />);
