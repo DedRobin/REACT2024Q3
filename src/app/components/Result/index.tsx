@@ -1,8 +1,8 @@
+import { useGetCharacterByIdQuery } from "@/store/apiSlice";
 import "./style.css";
-import { useGetCharacterByIdQuery } from "../../../store/apiSlice";
 import { useEffect, useState } from "react";
 import Loader from "../Loader";
-import { removeUndercheckSymbol, toCapitalizeCase } from "../../../utils/tools";
+import { removeUndercheckSymbol, toCapitalizeCase } from "@/utils/tools";
 
 type ResultProps = {
   personId: string;

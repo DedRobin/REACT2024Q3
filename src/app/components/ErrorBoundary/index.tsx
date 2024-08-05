@@ -1,7 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from "react";
-import Button from "../Button";
 
 import "./style.css";
+import Button from "../Button";
 
 interface ErrorProps {
   children: ReactNode;

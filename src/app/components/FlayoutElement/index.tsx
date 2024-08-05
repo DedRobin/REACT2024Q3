@@ -1,11 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 import { useCallback, useEffect, useState } from "react";
-import { ResultPayload } from "../Results/slice";
 import Button from "../Button";
-import { clearResult } from "../Results/slice";
 import { saveData } from "./services";
-import { store } from "../../../store/store";
+import { store } from "@/store/store";
+import { clearResult } from "../Results/slice";
 
 type RootState = ReturnType<typeof store.getState>;
 

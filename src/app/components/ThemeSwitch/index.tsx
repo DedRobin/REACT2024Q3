@@ -1,6 +1,6 @@
 import { SyntheticEvent } from "react";
 import "./style.css";
-import { ThemeContex } from "../../../views/Main/contex";
+import { ThemeContex } from "@/app/components/Main/contex";
 
 type ThemeSwitchProps = {
   onClick: (event: SyntheticEvent) => void;

@@ -1,12 +1,12 @@
 import { FormEvent, useCallback } from "react";
-import "./style.css";
+import { useRouter, useSearchParams } from "next/navigation";
 
+import "./style.css";
+import { useSearchQuery } from "./customHooks";
+import { ThemeContex } from "@/app/components/Main/contex";
+import Input from "../Input";
 import Button from "../Button";
 import ThrowErrorButton from "../ErrorButton";
-import Input from "../Input";
-import { useSearchQuery } from "./customHooks";
-import { ThemeContex } from "../../../views/Main/contex";
-import { useSearchParams, useRouter } from "next/navigation";
 
 export default function Search() {
   const [searchQuery, setSearchQuery] = useSearchQuery();
