@@ -13,6 +13,7 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   plugins: ["react-refresh", "react-compiler", "prettier"],
   rules: {
+    "no-inline-comments": "error",
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true, allowExportNames: ["metadata"] },

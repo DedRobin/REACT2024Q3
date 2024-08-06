@@ -1,3 +1,5 @@
+"use client";
+
 import { FormEvent, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -31,6 +33,12 @@ export default function Search() {
     },
     [router, searchParams, setSearchQuery],
   );
+
+  // useEffect(() => {
+  //   console.log("!!!!!");
+  //   const currentSearchQuery = localStorage.getItem(SQKEY) || "";
+  //   setSearchQuery(currentSearchQuery);
+  // });
 
   return (
     <ThemeContex.Consumer>
