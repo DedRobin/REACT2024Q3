@@ -7,13 +7,12 @@ import {
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import "./style.css";
 import { resultAdded, resultRemoved } from "./slice";
 import { SwapiData } from "@/store/apiSlice";
 import { store } from "@/store/store";
 import Result from "../Result";
-import { ThemeContex } from "@/app/components/Main/contex";
 import { removeUndercheckSymbol, toCapitalizeCase } from "@/utils/tools";
+import { ThemeContex } from "../Main/contex";
 
 type ResultProps = {
   results: SwapiData[];

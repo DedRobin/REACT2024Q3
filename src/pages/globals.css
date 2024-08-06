@@ -1,3 +1,13 @@
+@import url(../components/Main/style.css);
+@import url(../components/ErrorBoundary/style.css);
+@import url(../components/FlayoutElement/style.css);
+@import url(../components/Loader/style.css);
+@import url(../components/Paginator/style.css);
+@import url(../components/Result/style.css);
+@import url(../components/Results/style.css);
+@import url(../components/Search/style.css);
+@import url(../components/ThemeSwitch/style.css);
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -97,7 +107,7 @@ ul {
   }
 }
 
-#root {
+#__next {
   display: flex;
   flex-direction: column;
   align-items: center;

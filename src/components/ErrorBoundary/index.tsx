@@ -1,6 +1,5 @@
 import { Component, ErrorInfo, ReactNode } from "react";
 
-import "./style.css";
 import Button from "../Button";
 
 interface ErrorProps {

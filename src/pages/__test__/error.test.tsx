@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { render, screen } from "@testing-library/react";
-import ErrorPage from "../page";
+import ErrorPage from "..";
 
 describe("<App/>", async () => {
   const testId = "error-testid";

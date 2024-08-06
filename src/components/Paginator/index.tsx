@@ -1,6 +1,5 @@
 import { ReactElement, useCallback, useEffect, useState } from "react";
 
-import "./style.css";
 import Link from "next/link";
 
 type PaginatorProps = {

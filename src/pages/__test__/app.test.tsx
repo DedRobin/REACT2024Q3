@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { fireEvent, screen } from "@testing-library/react";
-import App from "../page";
+import App from "..";
 import { renderWithStoreProvider } from "../../../tests/utils";
 
 describe("<App/>", async () => {

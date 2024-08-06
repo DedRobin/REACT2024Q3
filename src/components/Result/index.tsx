@@ -1,6 +1,6 @@
-import { useGetCharacterByIdQuery } from "@/store/apiSlice";
-import "./style.css";
 import { useEffect, useState } from "react";
+
+import { useGetCharacterByIdQuery } from "@/store/apiSlice";
 import Loader from "../Loader";
 import { removeUndercheckSymbol, toCapitalizeCase } from "@/utils/tools";
 
