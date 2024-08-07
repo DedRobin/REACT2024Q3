@@ -34,12 +34,6 @@ export default function Search() {
     [router, searchParams, setSearchQuery],
   );
 
-  // useEffect(() => {
-  //   console.log("!!!!!");
-  //   const currentSearchQuery = localStorage.getItem(SQKEY) || "";
-  //   setSearchQuery(currentSearchQuery);
-  // });
-
   return (
     <ThemeContex.Consumer>
       {(value) => (
