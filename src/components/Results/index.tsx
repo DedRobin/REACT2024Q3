@@ -1,5 +1,7 @@
 import {
   BaseSyntheticEvent,
+  Children,
+  ReactElement,
   ReactNode,
   useCallback,
   useEffect,
@@ -13,17 +15,19 @@ import { store } from "@/store/store";
 import Result from "../Result";
 import { removeUndercheckSymbol, toCapitalizeCase } from "@/utils/tools";
 import { ThemeContex } from "../Main/contex";
+import Link from "next/link";
 
 type ResultProps = {
   results: SwapiData[];
+  children: JSX.Element | JSX.Element[];
 };
 type RootState = ReturnType<typeof store.getState>;
 type CallbackOnChange = (event: BaseSyntheticEvent, person: SwapiData) => void;
 type CallbackOnClick = (event: BaseSyntheticEvent, person: SwapiData) => void;
 
-export default function Results({ results: people }: ResultProps) {
+export default function Results({ results: people, children }: ResultProps) {
   const [peopleList, setPeopleList] = useState<ReactNode[] | "No matches">();
-  const [activePerson, setActivePerson] = useState("");
+  // const [activePerson, setActivePerson] = useState("");
   const dispatch = useDispatch();
   const peopleStore = useSelector((state: RootState) => state.results);
 
@@ -41,17 +45,17 @@ export default function Results({ results: people }: ResultProps) {
     [dispatch],
   );
 
-  const showCard = useCallback(
-    (event: BaseSyntheticEvent, person: SwapiData) => {
-      const { target } = event;
-      console.log(target);
-      if (!(target instanceof HTMLInputElement)) {
-        const personId = person.url.split("/").at(-2);
-        if (personId) setActivePerson(personId);
-      }
-    },
-    [],
-  );
+  // const showCard = useCallback(
+  //   (event: BaseSyntheticEvent, person: SwapiData) => {
+  //     const { target } = event;
+  //     console.log(target);
+  //     if (!(target instanceof HTMLInputElement)) {
+  //       const personId = person.url.split("/").at(-2);
+  //       if (personId) setActivePerson(personId);
+  //     }
+  //   },
+  //   [],
+  // );
 
   useEffect(() => {
     const updatedPeopleList = people.map((person, index): ReactNode => {
@@ -72,7 +76,7 @@ export default function Results({ results: people }: ResultProps) {
           person={person}
           checked={checked}
           onChange={onChange}
-          onClick={showCard}
+          // onClick={showCard}
         >
           {rows}
         </Table>
@@ -81,14 +85,15 @@ export default function Results({ results: people }: ResultProps) {
 
     if (!updatedPeopleList.length) setPeopleList("No matches");
     else setPeopleList(updatedPeopleList);
-  }, [onChange, people, peopleStore, showCard]);
+  }, [onChange, people, peopleStore]);
 
   return (
     <ThemeContex.Consumer>
       {(value) => (
         <div className={value === "light" ? "people light" : "people dark"}>
           <div className="people-list">{peopleList}</div>
-          {activePerson ? <Result personId={activePerson} /> : null}
+          {children}
+          {/* {activePerson ? <Result personId={activePerson} /> : null} */}
         </div>
       )}
     </ThemeContex.Consumer>
@@ -99,15 +104,18 @@ type TableProps = {
   person: SwapiData;
   checked: boolean;
   onChange: CallbackOnChange;
-  onClick: CallbackOnClick;
+  // onClick: CallbackOnClick;
   children: JSX.Element[];
 };
 
-function Table({ person, checked, onChange, onClick, children }: TableProps) {
+function Table({ person, checked, onChange, children }: TableProps) {
+  const personId = person.url.split("/").at(-2);
+
   return (
-    <div
+    <Link
+      href={"/person/" + personId}
       className="person-item"
-      onClick={(event: BaseSyntheticEvent) => onClick(event, person)}
+      // onClick={(event: BaseSyntheticEvent) => onClick(event, person)}
     >
       <input
         className="person-checkbox"
@@ -117,7 +125,7 @@ function Table({ person, checked, onChange, onClick, children }: TableProps) {
         onChange={(event: BaseSyntheticEvent) => onChange(event, person)}
       />
       <table className="person-table">{children}</table>
-    </div>
+    </Link>
   );
 }
 
@@ -135,3 +143,7 @@ function Row({ index, person, field }: RowProps) {
     </tbody>
   );
 }
+
+Results.getLayout = function getLayout(page: ReactElement) {
+  return page;
+};

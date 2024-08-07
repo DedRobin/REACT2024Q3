@@ -6,8 +6,13 @@ import Paginator from "../Paginator";
 import Results from "../Results";
 import FlayoutElement from "../FlayoutElement";
 import Search from "../Search";
+import { ReactElement } from "react";
 
-export default function MainPage() {
+type MainPageProps = {
+  children: ReactElement | ReactElement[];
+};
+
+export default function MainPage({ children }: MainPageProps) {
   const searchParams = useSearchParams();
   const { data, isFetching, isLoading, refetch } = useGetCharactersQuery(
     searchParams.toString(),
@@ -23,7 +28,7 @@ export default function MainPage() {
           {data ? (
             <>
               <Paginator count={data.count} refetchResult={refetch} />
-              <Results results={data.results} />
+              <Results results={data.results}>{children}</Results>
             </>
           ) : (
             <div>No results</div>

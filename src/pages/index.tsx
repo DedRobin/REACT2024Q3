@@ -1,11 +1,16 @@
-import { SyntheticEvent, useCallback, useState } from "react";
+import { ReactElement, SyntheticEvent, useCallback, useState } from "react";
 
 import { Theme, ThemeContex } from "@/components/Main/contex";
 import ThemeSwitch from "@/components/ThemeSwitch";
 import MainPage from "@/components/Main";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { NextPageWithLayout } from "./_app";
 
-export default function App() {
+type IndexPageProps = {
+  children: ReactElement;
+};
+
+export const IndexPage: NextPageWithLayout<IndexPageProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>("light");
 
   const switchTheme = useCallback((event: SyntheticEvent) => {
@@ -21,9 +26,15 @@ export default function App() {
       <ThemeContex.Provider value={theme}>
         <ThemeSwitch onClick={switchTheme} />
         <ErrorBoundary>
-          <MainPage />
+          <MainPage>{children}</MainPage>
         </ErrorBoundary>
       </ThemeContex.Provider>
     </div>
   );
-}
+};
+
+IndexPage.getLayout = function getLayout(page: ReactElement) {
+  return page;
+};
+
+export default IndexPage;
