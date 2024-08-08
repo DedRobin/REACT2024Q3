@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import Button from "../Button";
 import { saveData } from "./services";
 import { store } from "@/store/store";
-import { clearResult, ResultPayload } from "../Results/slice";
+import { ResultPayload, clearResult } from "../Results/slice";
 
 type RootState = ReturnType<typeof store.getState>;
 

@@ -2,8 +2,8 @@ import React, { PropsWithChildren } from "react";
 import { render } from "@testing-library/react";
 import type { RenderOptions } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { createMemoryRouter, RouterProvider } from "react-router-dom";
-import { AppStore, RootState, setupStore } from "../src/store/store";
+import { RouterProvider, createMemoryRouter } from "react-router-dom";
+import { AppStore, RootState, setupStore } from "../store/store";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: RootState;

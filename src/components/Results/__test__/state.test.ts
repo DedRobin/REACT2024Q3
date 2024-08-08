@@ -1,9 +1,9 @@
 import { describe, expect, test } from "vitest";
 import resultReducer, {
-  resultInitialState,
-  resultAdded,
-  resultRemoved,
   clearResult,
+  resultAdded,
+  resultInitialState,
+  resultRemoved,
 } from "../slice";
 
 describe("Result Initial State", () => {

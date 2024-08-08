@@ -1,15 +1,15 @@
+import { ReactElement } from "react";
+import FlayoutElement from "../FlayoutElement";
 import { useSearchParams } from "next/navigation";
 
 import { useGetCharactersQuery } from "@/store/apiSlice";
 import Loader from "../Loader";
 import Paginator from "../Paginator";
 import Results from "../Results";
-import FlayoutElement from "../FlayoutElement";
 import Search from "../Search";
-import { ReactElement } from "react";
 
 type MainPageProps = {
-  children: ReactElement | ReactElement[];
+  children?: ReactElement | ReactElement[];
 };
 
 export default function MainPage({ children }: MainPageProps) {

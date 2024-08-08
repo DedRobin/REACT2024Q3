@@ -7,7 +7,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import { NextPageWithLayout } from "./_app";
 
 type IndexPageProps = {
-  children: ReactElement;
+  children?: ReactElement;
 };
 
 export const IndexPage: NextPageWithLayout<IndexPageProps> = ({ children }) => {

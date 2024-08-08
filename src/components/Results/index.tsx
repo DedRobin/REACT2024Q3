@@ -7,17 +7,17 @@ import {
   useState,
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
 
 import { resultAdded, resultRemoved } from "./slice";
 import { SwapiData } from "@/store/apiSlice";
 import { store } from "@/store/store";
 import { removeUndercheckSymbol, toCapitalizeCase } from "@/utils/tools";
 import { ThemeContex } from "../Main/contex";
-import Link from "next/link";
 
 type ResultProps = {
   results: SwapiData[];
-  children: JSX.Element | JSX.Element[];
+  children?: JSX.Element | JSX.Element[];
 };
 type RootState = ReturnType<typeof store.getState>;
 type CallbackOnChange = (event: BaseSyntheticEvent, person: SwapiData) => void;

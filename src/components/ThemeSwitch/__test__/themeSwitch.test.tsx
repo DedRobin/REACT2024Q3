@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { screen } from "@testing-library/react";
 
-import { renderWithRouterProvider } from "../../../../tests/utils";
+import { renderWithRouterProvider } from "../../../tests/utils";
 import ThemeSwitch from "../index";
 
 describe("<Search/>", () => {
