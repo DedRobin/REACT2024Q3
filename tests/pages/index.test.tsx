@@ -4,12 +4,7 @@ import { IndexPage } from "@/pages";
 import { renderWithStoreProvider } from "../utils";
 import { HttpResponse, http } from "msw";
 import { setupServer } from "msw/node";
-import { describe } from "node:test";
-
-vi.mock("next/navigation", () => ({
-  useSearchParams: vi.fn().mockReturnValue(() => new URLSearchParams("")),
-  useRouter: vi.fn().mockReturnValue(() => {}),
-}));
+import { beforeEach, describe } from "node:test";
 
 const mockPerson = {
   results: [
@@ -26,6 +21,14 @@ export const mockHandler = http.get("https://swapi.dev/api/people", () => {
 const server = setupServer(mockHandler);
 describe("<IndexPage/> test", () => {
   beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
+  beforeEach(() => {
+    vi.mock("next/navigation", () => ({
+      useSearchParams: vi.fn().mockReturnValue(new URLSearchParams("")),
+      useRouter: () => ({
+        push: vi.fn(),
+      }),
+    }));
+  });
   afterAll(() => {
     vi.clearAllMocks();
     server.close();
