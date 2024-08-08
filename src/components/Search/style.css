@@ -15,3 +15,9 @@
 .error-button.light {
   background-color: rgb(146, 8, 238);
 }
+
+.search-button.dark,
+.search-input.dark,
+.error-button.dark {
+  background-color: rgb(152, 15, 255);
+}

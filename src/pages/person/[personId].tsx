@@ -5,7 +5,12 @@ type PersonPageProps = {
   personId: string;
 };
 
+type ServerSideProps = {
+  query: PersonPageProps;
+};
+
 export default function PersonPage({ personId }: PersonPageProps) {
+  console.log("Client");
   if (!personId) throw new Error("You've lost 'personId'");
   if (Array.isArray(personId)) throw new Error("You've got 'Array'");
 
@@ -16,8 +21,9 @@ export default function PersonPage({ personId }: PersonPageProps) {
   );
 }
 
-export async function getServerSideProps(contex) {
-  const { personId } = contex.query;
+export async function getServerSideProps({ query }: ServerSideProps) {
+  console.log("Server");
+  const { personId } = query;
 
   return {
     props: {

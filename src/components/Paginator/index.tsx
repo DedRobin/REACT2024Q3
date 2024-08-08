@@ -41,15 +41,15 @@ export default function Paginator({ count, refetchResult }: PaginatorProps) {
     [],
   );
 
-  const arrowPrevPage = "?" + mutatePage(searchParams, "decrease").toString();
-  const arrowNextPage = "?" + mutatePage(searchParams, "increase").toString();
+  const arrowPrevPage = "/?" + mutatePage(searchParams, "decrease").toString();
+  const arrowNextPage = "/?" + mutatePage(searchParams, "increase").toString();
 
   const pagesElements: ReactElement[] = [];
 
   for (let page = 1; page <= pages; page++) {
     const params = new URLSearchParams(searchParams);
     params.set("page", `${page}`);
-    const href = `?${params.toString()}`;
+    const href = `/?${params.toString()}`;
     pagesElements.push(
       <Link
         href={href}

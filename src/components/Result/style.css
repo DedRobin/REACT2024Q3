@@ -2,7 +2,7 @@
   width: 0%;
   overflow: hidden;
   overflow-wrap: break-word;
-  outline: 4px #48036f solid;
+  outline: 4px #ad66d5 solid;
   border-radius: 10px;
   padding: 10px;
   height: fit-content;
@@ -12,4 +12,8 @@
 
 .person-card.active {
   width: 100%;
+}
+
+.people.light .person-card {
+  outline-color: #48036f;
 }

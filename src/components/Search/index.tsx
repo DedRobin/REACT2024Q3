@@ -1,5 +1,3 @@
-"use client";
-
 import { FormEvent, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 

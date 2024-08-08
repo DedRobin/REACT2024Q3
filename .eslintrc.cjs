@@ -16,7 +16,15 @@ module.exports = {
     "no-inline-comments": "error",
     "react-refresh/only-export-components": [
       "warn",
-      { allowConstantExport: true, allowExportNames: ["metadata"] },
+      {
+        allowConstantExport: true,
+        allowExportNames: [
+          "metadata",
+          "getServerSideProps",
+          "getStaticProps",
+          "getStaticPaths",
+        ],
+      },
     ],
     "react-compiler/react-compiler": "error",
     "@typescript-eslint/no-explicit-any": "error",
