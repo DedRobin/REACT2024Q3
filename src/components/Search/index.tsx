@@ -25,7 +25,7 @@ export default function Search() {
           const newSearchParams = new URLSearchParams(searchParams);
           if (searchValue == "") newSearchParams.delete("search");
           else newSearchParams.set("search", searchValue.toString());
-          router.push(`?${newSearchParams}`);
+          router.push(`/?${newSearchParams}`);
         }
       }
     },
