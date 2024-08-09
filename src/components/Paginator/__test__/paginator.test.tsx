@@ -5,7 +5,7 @@ import { screen } from "@testing-library/react";
 
 import Paginator from "../index";
 import { afterEach, beforeEach } from "node:test";
-import mockServer from "../../../../__tests__/pages/__mocks__/server";
+import mockServer from "@/tests/pages/__mocks__/server";
 
 describe("<Paginator/>", () => {
   beforeEach(() => {
