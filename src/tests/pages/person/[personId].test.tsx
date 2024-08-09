@@ -14,16 +14,21 @@ import {
 import PersonPage from "@/pages/person/[personId]";
 import mockServer from "@/mocks/server";
 import { renderWithStoreProvider } from "@/tests/utils";
+import { mockPersonId } from "@/mocks/data";
+
+function mockHooks() {
+  vi.mock("next/navigation", () => ({
+    useSearchParams: vi.fn().mockReturnValue(new URLSearchParams("")),
+    useRouter: () => ({
+      push: vi.fn(),
+    }),
+  }));
+}
 
 describe("<PersonPage /> test", () => {
   beforeAll(() => mockServer.listen({ onUnhandledRequest: "error" }));
   beforeEach(() => {
-    vi.mock("next/navigation", () => ({
-      useSearchParams: vi.fn().mockReturnValue(new URLSearchParams("")),
-      useRouter: () => ({
-        push: vi.fn(),
-      }),
-    }));
+    mockHooks();
   });
   afterAll(() => {
     vi.clearAllMocks();
@@ -31,11 +36,9 @@ describe("<PersonPage /> test", () => {
   });
   afterEach(() => mockServer.resetHandlers());
 
-  const mockId = "1";
-
   test("<PersonPage /> should be mounted", async () => {
     const { container } = renderWithStoreProvider(
-      <PersonPage personId={mockId} />,
+      <PersonPage personId={mockPersonId} />,
     );
     const loader = container.querySelector(".loader");
     assert(loader != null && loader.className === "loader");

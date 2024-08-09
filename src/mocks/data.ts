@@ -1,7 +1,8 @@
 import { SwapiResponse } from "@/store/apiSlice";
 
-const count = 10;
-const results = new Array(count).fill(null).map((_, i) => ({
+const mockCount = 10;
+
+const results = new Array(mockCount).fill(null).map((_, i) => ({
   name: `Foo${i + 1}`,
   url: `http://mock-url/mock-person/${i + 1}`,
   height: `height${i + 1}`,
@@ -14,10 +15,12 @@ const results = new Array(count).fill(null).map((_, i) => ({
 }));
 
 const mockPeople: SwapiResponse = {
-  count,
+  count: mockCount,
   next: null,
   previous: null,
   results,
 };
 
-export { mockPeople };
+const mockPersonId = String(Math.floor(Math.random() * mockCount) + 1);
+
+export { mockPeople, mockPersonId };
