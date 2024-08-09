@@ -1,21 +1,25 @@
-import { describe, expect, test } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { fireEvent, render } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
 import { screen } from "@testing-library/react";
 
 import Paginator from "../index";
+import { afterEach, beforeEach } from "node:test";
+import mockServer from "../../../../__tests__/pages/__mocks__/server";
 
 describe("<Paginator/>", () => {
+  beforeEach(() => {
+    mockServer.listen();
+  });
+  afterAll(() => {
+    mockServer.close();
+  });
+  afterEach(() => mockServer.resetHandlers());
+
   test("<Paginator/> should be mounted", () => {
     const fakeCount = 30;
-    const fakeSearchParams = new URLSearchParams({ page: "5" });
 
-    render(
-      <MemoryRouter>
-        <Paginator count={fakeCount} searchParams={fakeSearchParams} />,
-      </MemoryRouter>,
-    );
+    render(<Paginator count={fakeCount} refetchResult={vi.fn} />);
 
     expect(screen.queryAllByRole("link").length).toEqual(
       Math.floor(fakeCount / 10) + 2,
@@ -28,13 +32,8 @@ describe("<Paginator/>", () => {
 
   test("<Paginator/> Page '3' should have disabled after clicking on it", () => {
     const fakeCount = 30;
-    const fakeSearchParams = new URLSearchParams({ page: "5" });
 
-    render(
-      <MemoryRouter>
-        <Paginator count={fakeCount} searchParams={fakeSearchParams} />,
-      </MemoryRouter>,
-    );
+    render(<Paginator count={fakeCount} refetchResult={vi.fn} />);
     const button = screen.getByText("3");
     fireEvent.click(button);
 
@@ -45,13 +44,9 @@ describe("<Paginator/>", () => {
 
   test("<Paginator/> Page '1' should be disabled by default", () => {
     const fakeCount = 30;
-    const fakeSearchParams = new URLSearchParams({ page: "5" });
 
-    render(
-      <MemoryRouter>
-        <Paginator count={fakeCount} searchParams={fakeSearchParams} />,
-      </MemoryRouter>,
-    );
+    render(<Paginator count={fakeCount} refetchResult={vi.fn} />);
+
     const button = screen.getByText("1");
     fireEvent.click(button);
 

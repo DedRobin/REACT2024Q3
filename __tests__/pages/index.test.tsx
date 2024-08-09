@@ -35,7 +35,7 @@ describe("<IndexPage/> test", () => {
     const loader = container.querySelector(".loader");
     assert(loader != null && loader.className === "loader");
     await waitFor(() => expect(loader).not.toBeInTheDocument());
-    expect(screen.getByText(/Foo1/i)).toBeInTheDocument();
-    expect(screen.getByText(/Foo2/i)).toBeInTheDocument();
+    expect(screen.getByText("Foo1")).toBeInTheDocument();
+    expect(screen.getByText("Foo2")).toBeInTheDocument();
   });
 });

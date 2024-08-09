@@ -1,4 +1,4 @@
-import { SwapiData } from "../../../store/apiSlice";
+import { SwapiData } from "@/store/apiSlice";
 
 export const mockResults: SwapiData[] = [
   {
@@ -10,6 +10,7 @@ export const mockResults: SwapiData[] = [
     eyeColor: "eye1",
     birthday: "birthday1",
     gender: "gender1",
+    url: "http://mock-url/mock-person/1",
   },
   {
     name: "name2",
@@ -20,5 +21,6 @@ export const mockResults: SwapiData[] = [
     eyeColor: "eye2",
     birthday: "birthday2",
     gender: "gender2",
+    url: "http://mock-url/mock-person/2",
   },
 ];

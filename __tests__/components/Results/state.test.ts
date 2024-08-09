@@ -1,10 +1,10 @@
-import { describe, expect, test } from "vitest";
 import resultReducer, {
-  clearResult,
   resultAdded,
+  clearResult,
   resultInitialState,
   resultRemoved,
-} from "../slice";
+} from "@/components/Results/slice";
+import { describe, expect, test } from "vitest";
 
 describe("Result Initial State", () => {
   test("Initial state", () => {
