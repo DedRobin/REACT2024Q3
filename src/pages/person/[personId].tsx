@@ -10,7 +10,6 @@ type ServerSideProps = {
 };
 
 export default function PersonPage({ personId }: PersonPageProps) {
-  console.log("Client");
   if (!personId) throw new Error("You've lost 'personId'");
   if (Array.isArray(personId)) throw new Error("You've got 'Array'");
 
