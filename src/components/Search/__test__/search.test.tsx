@@ -3,7 +3,7 @@ import "@testing-library/jest-dom/vitest";
 import { screen } from "@testing-library/react";
 
 import Search from "../index";
-import { renderWithRouterProvider } from "../../../../tests/utils";
+import { renderWithRouterProvider } from "../../../../__tests__/utils";
 
 describe("<Search/>", () => {
   test("<Search/> should be mounted", () => {

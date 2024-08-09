@@ -3,7 +3,7 @@ import "@testing-library/jest-dom/vitest";
 import { screen } from "@testing-library/react";
 
 import Results from "../index";
-import { renderWithStoreProvider } from "../../../../tests/utils";
+import { renderWithStoreProvider } from "../../../../__tests__/utils";
 import { mockResults } from "./mockResults";
 
 describe("<Result/> and its state", () => {
