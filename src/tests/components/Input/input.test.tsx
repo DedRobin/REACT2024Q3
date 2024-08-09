@@ -1,8 +1,7 @@
 import { describe, expect, test } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { render, screen } from "@testing-library/react";
-
-import Input from "../index";
+import Input from "@/components/Input";
 
 describe("<Input/>", async () => {
   test("<Input/> should be mounted", () => {

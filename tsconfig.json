@@ -27,8 +27,7 @@
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "@/tests/*": ["./__tests__/*"]
+      "@/*": ["./src/*"]
     },
     "plugins": [
       {
@@ -38,7 +37,7 @@
   },
   "include": [
     "./src",
-    "__tests__",
+    "tests",
     "./dist/types/**/*.ts",
     "./next-env.d.ts",
     ".next/types/**/*.ts"

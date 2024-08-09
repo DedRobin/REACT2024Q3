@@ -12,19 +12,17 @@ export default function ThrowErrorButton() {
   return (
     <ThemeContex.Consumer>
       {(value) => (
-        <>
-          <Button
-            className={
-              value === "light" ? "error-button light" : "error-button dark"
-            }
-            type="button"
-            onClick={() => {
-              setIsError(true);
-            }}
-          >
-            Throw an Error
-          </Button>
-        </>
+        <Button
+          className={
+            value === "light" ? "error-button light" : "error-button dark"
+          }
+          type="button"
+          onClick={() => {
+            setIsError(true);
+          }}
+        >
+          Throw an Error
+        </Button>
       )}
     </ThemeContex.Consumer>
   );

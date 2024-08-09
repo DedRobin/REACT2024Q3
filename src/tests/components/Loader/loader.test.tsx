@@ -1,8 +1,7 @@
 import { describe, expect, test } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { render } from "@testing-library/react";
-
-import Loader from "../index";
+import Loader from "@/components/Loader";
 
 describe("<Loader/>", async () => {
   test("<Loader/> should be mounted", () => {

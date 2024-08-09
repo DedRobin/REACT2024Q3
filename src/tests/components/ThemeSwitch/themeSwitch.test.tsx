@@ -1,13 +1,12 @@
 import { describe, expect, test } from "vitest";
 import "@testing-library/jest-dom/vitest";
-import { screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
-import { renderWithRouterProvider } from "../../../../__tests__/utils";
-import ThemeSwitch from "../index";
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 describe("<Search/>", () => {
   test("<Search/> should be mounted", () => {
-    renderWithRouterProvider(
+    render(
       <div data-testid="theme-switchi">
         <ThemeSwitch onClick={() => {}} />;
       </div>,

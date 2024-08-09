@@ -1,9 +1,8 @@
 import { describe, expect, test } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
-
-import ThrowErrorButton from "..";
-import ErrorBoundary from "../../ErrorBoundary";
+import ThrowErrorButton from "@/components/ErrorButton";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 describe("<ThrowErrorButton/>", () => {
   test("<ThrowErrorButton/> should be mounted", () => {

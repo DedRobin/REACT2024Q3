@@ -1,8 +1,7 @@
 import { describe, expect, test } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { render, screen } from "@testing-library/react";
-
-import Button from "../../Button";
+import Button from "@/components/Button";
 
 describe("<Button/>", () => {
   test("<Button/> should be mounted", () => {

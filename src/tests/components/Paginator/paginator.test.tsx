@@ -3,9 +3,9 @@ import "@testing-library/jest-dom/vitest";
 import { fireEvent, render } from "@testing-library/react";
 import { screen } from "@testing-library/react";
 
-import Paginator from "../index";
 import { afterEach, beforeEach } from "node:test";
-import mockServer from "@/tests/pages/__mocks__/server";
+import Paginator from "@/components/Paginator";
+import mockServer from "@/mocks/server";
 
 describe("<Paginator/>", () => {
   beforeEach(() => {

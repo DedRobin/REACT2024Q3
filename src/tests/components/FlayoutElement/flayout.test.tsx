@@ -1,8 +1,8 @@
 import { describe, expect, test } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { screen } from "@testing-library/react";
-import FlayoutElement from "..";
-import { renderWithStoreProvider } from "../../../../__tests__/utils";
+import { renderWithStoreProvider } from "@/tests/utils";
+import FlayoutElement from "@/components/FlayoutElement";
 
 describe("<FlayoutElement/>", () => {
   const fakeData = {

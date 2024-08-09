@@ -12,7 +12,7 @@ import { screen, waitFor } from "@testing-library/react";
 import { IndexPage } from "@/pages";
 import { renderWithStoreProvider } from "../utils";
 import { beforeEach, describe } from "node:test";
-import mockServer from "./__mocks__/server";
+import mockServer from "../../mocks/server";
 
 describe("<IndexPage/> test", () => {
   beforeAll(() => mockServer.listen({ onUnhandledRequest: "error" }));
