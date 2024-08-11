@@ -1,0 +1,79 @@
+.person-heading {
+  font-size: 2rem;
+}
+
+.people {
+  display: flex;
+  width: 100%;
+}
+
+.people-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.person-item {
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  width: 350px;
+  justify-self: stretch;
+}
+
+.person-data {
+  outline: 4px #ad66d5 solid;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.person-data:hover {
+  box-shadow: 0px 0px 15px white;
+}
+
+.person-table {
+  width: 100%;
+  color: white;
+}
+
+.person-field,
+.person-text {
+  outline: #ad66d5 solid 2px;
+}
+
+.person-field,
+.person-text {
+  padding: 10px;
+}
+
+.person-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.person-field {
+  font-weight: bold;
+}
+
+.person-text {
+  font-style: italic;
+  word-break: break-all;
+}
+
+.person-checkbox {
+  margin: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.people.light .person-table,
+.people.light tbody,
+.people.light .person-field,
+.people.light .person-text,
+.people.light .person-data {
+  background-color: #ad66d5;
+  outline-color: #48036f;
+}
