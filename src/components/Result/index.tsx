@@ -29,7 +29,7 @@ export default function Result({ personId }: ResultProps) {
               {Object.entries(personData).map((item, index) => (
                 <li key={index}>
                   {toCapitalizeCase(removeUndercheckSymbol(item[0]))} :{" "}
-                  {item[1].slice(0, 10)}
+                  {item[1]}
                 </li>
               ))}
             </ul>

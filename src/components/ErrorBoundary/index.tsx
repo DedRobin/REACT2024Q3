@@ -1,4 +1,4 @@
-import { Component, ErrorInfo, ReactNode } from "react";
+import { Component, ReactNode } from "react";
 
 import Button from "../Button";
 import { ThemeContex } from "../Main/contex";
@@ -22,15 +22,8 @@ export default class ErrorBoundary extends Component<ErrorProps, ErrorState> {
     this.reset = this.reset.bind(this);
   }
 
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    this.setState({
-      errorMessage: error.message,
-    });
-    console.error(error, errorInfo);
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, errorMessage: error.message };
   }
 
   reset() {

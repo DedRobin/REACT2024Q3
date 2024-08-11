@@ -21,7 +21,6 @@ export default function PersonPage({ personId }: PersonPageProps) {
 }
 
 export async function getServerSideProps({ query }: ServerSideProps) {
-  console.log("Server");
   const { personId } = query;
 
   return {

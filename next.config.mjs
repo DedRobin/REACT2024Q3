@@ -2,7 +2,7 @@
 const nextConfig = {
   output: "standalone",
   distDir: "./dist",
-  productionBrowserSourceMaps: true,
+  // productionBrowserSourceMaps: true,
 };
 
 export default nextConfig;
