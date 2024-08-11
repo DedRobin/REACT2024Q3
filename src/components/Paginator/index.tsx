@@ -1,6 +1,7 @@
 import { ReactElement, useCallback, useEffect, useState } from "react";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 type PaginatorProps = {
   count: number;
@@ -8,7 +9,7 @@ type PaginatorProps = {
 };
 
 export default function Paginator({ count, refetchResult }: PaginatorProps) {
-  const searchParams = new URL(location.href).searchParams;
+  const searchParams = useSearchParams();
   const [currentPage, setCurrentPage] = useState<string>(
     searchParams.get("page") || "1",
   );

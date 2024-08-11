@@ -1,14 +1,20 @@
-import { afterAll, describe, expect, test, vi } from "vitest";
+import { afterAll, beforeAll, describe, expect, test, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { fireEvent, render } from "@testing-library/react";
 import { screen } from "@testing-library/react";
 
-import { afterEach, beforeEach } from "node:test";
+import { afterEach } from "node:test";
 import Paginator from "@/components/Paginator";
 import mockServer from "@/mocks/server";
 
+import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
+
+vi.mock("next/navigation", () => ({
+  useSearchParams: vi.fn().mockReturnValue(new URLSearchParams("")),
+}));
+
 describe("<Paginator/>", () => {
-  beforeEach(() => {
+  beforeAll(() => {
     mockServer.listen();
   });
   afterAll(() => {
@@ -19,7 +25,9 @@ describe("<Paginator/>", () => {
   test("<Paginator/> should be mounted", () => {
     const fakeCount = 30;
 
-    render(<Paginator count={fakeCount} refetchResult={vi.fn} />);
+    render(<Paginator count={fakeCount} refetchResult={vi.fn} />, {
+      wrapper: MemoryRouterProvider,
+    });
 
     expect(screen.queryAllByRole("link").length).toEqual(
       Math.floor(fakeCount / 10) + 2,
@@ -33,7 +41,9 @@ describe("<Paginator/>", () => {
   test("<Paginator/> Page '3' should have disabled after clicking on it", () => {
     const fakeCount = 30;
 
-    render(<Paginator count={fakeCount} refetchResult={vi.fn} />);
+    render(<Paginator count={fakeCount} refetchResult={vi.fn} />, {
+      wrapper: MemoryRouterProvider,
+    });
     const button = screen.getByText("3");
     fireEvent.click(button);
 
@@ -45,7 +55,9 @@ describe("<Paginator/>", () => {
   test("<Paginator/> Page '1' should be disabled by default", () => {
     const fakeCount = 30;
 
-    render(<Paginator count={fakeCount} refetchResult={vi.fn} />);
+    render(<Paginator count={fakeCount} refetchResult={vi.fn} />, {
+      wrapper: MemoryRouterProvider,
+    });
 
     const button = screen.getByText("1");
     fireEvent.click(button);

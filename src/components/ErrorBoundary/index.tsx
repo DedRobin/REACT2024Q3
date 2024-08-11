@@ -1,6 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from "react";
 
 import Button from "../Button";
+import { ThemeContex } from "../Main/contex";
 
 interface ErrorProps {
   children: ReactNode;
@@ -39,12 +40,22 @@ export default class ErrorBoundary extends Component<ErrorProps, ErrorState> {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="error">
-          <div className="error-text">{this.state.errorMessage}</div>
-          <Button className="back-button" type="button" onClick={this.reset}>
-            Go back
-          </Button>
-        </div>
+        <ThemeContex.Consumer>
+          {(value) => (
+            <div className="error">
+              <div className="error-text">{this.state.errorMessage}</div>
+              <Button
+                className={
+                  value === "light" ? "back-button light" : "back-button dark"
+                }
+                type="button"
+                onClick={this.reset}
+              >
+                Go back
+              </Button>
+            </div>
+          )}
+        </ThemeContex.Consumer>
       );
     }
 

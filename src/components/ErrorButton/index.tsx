@@ -9,6 +9,7 @@ export default function ThrowErrorButton() {
     throw new Error(
       "Hi. I'm 'ThrowErrorButton' component. This error was issued by me.",
     );
+
   return (
     <ThemeContex.Consumer>
       {(value) => (
