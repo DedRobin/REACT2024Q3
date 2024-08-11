@@ -11,10 +11,9 @@ import {
   vi,
 } from "vitest";
 
-import PersonPage from "@/pages/person/[personId]";
 import mockServer from "@/mocks/server";
 import { renderWithStoreProvider } from "@/tests/utils";
-import { mockPersonId } from "@/mocks/data";
+import PersonPage from "@/app/person/[personId]/page";
 
 function mockHooks() {
   vi.mock("next/navigation", () => ({
@@ -22,6 +21,11 @@ function mockHooks() {
     useRouter: () => ({
       push: vi.fn(),
     }),
+  }));
+  vi.mock("next/headers", () => ({
+    headers: vi
+      .fn()
+      .mockReturnValue({ get: vi.fn().mockReturnValue("people") }),
   }));
 }
 
@@ -37,9 +41,7 @@ describe("<PersonPage /> test", () => {
   afterEach(() => mockServer.resetHandlers());
 
   test("<PersonPage /> should be mounted", async () => {
-    const { container } = renderWithStoreProvider(
-      <PersonPage personId={mockPersonId} />,
-    );
+    const { container } = renderWithStoreProvider(<PersonPage />);
     const loader = container.querySelector(".loader");
     assert(loader != null && loader.className === "loader");
     await waitFor(() => expect(container).toHaveTextContent("Foo1"));

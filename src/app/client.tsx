@@ -1,16 +1,19 @@
+"use client";
+
 import { ReactElement, SyntheticEvent, useCallback, useState } from "react";
 
 import { Theme, ThemeContex } from "@/components/Main/contex";
 import ThemeSwitch from "@/components/ThemeSwitch";
 import MainPage from "@/components/Main";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import { NextPageWithLayout } from "./_app";
+import { Provider } from "react-redux";
+import { store } from "@/store/store";
 
 type IndexPageProps = {
   children?: ReactElement;
 };
 
-export const IndexPage: NextPageWithLayout<IndexPageProps> = ({ children }) => {
+export const Index = ({ children }: IndexPageProps) => {
   const [theme, setTheme] = useState<Theme>("light");
 
   const switchTheme = useCallback((event: SyntheticEvent) => {
@@ -22,19 +25,15 @@ export const IndexPage: NextPageWithLayout<IndexPageProps> = ({ children }) => {
   }, []);
 
   return (
-    <div className={theme === "light" ? "app light" : "app dark"}>
-      <ThemeContex.Provider value={theme}>
-        <ThemeSwitch onClick={switchTheme} />
-        <ErrorBoundary>
-          <MainPage>{children}</MainPage>
-        </ErrorBoundary>
-      </ThemeContex.Provider>
-    </div>
+    <Provider store={store}>
+      <div className={theme === "light" ? "app light" : "app dark"}>
+        <ThemeContex.Provider value={theme}>
+          <ThemeSwitch onClick={switchTheme} />
+          <ErrorBoundary>
+            <MainPage>{children}</MainPage>
+          </ErrorBoundary>
+        </ThemeContex.Provider>
+      </div>
+    </Provider>
   );
 };
-
-IndexPage.getLayout = function getLayout(page: ReactElement) {
-  return page;
-};
-
-export default IndexPage;
