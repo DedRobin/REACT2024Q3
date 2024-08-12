@@ -1,11 +1,11 @@
 .header {
   background-color: #ffc573;
+  font-size: 2rem;
 }
 
 .links {
   display: flex;
   justify-content: center;
-  gap: 20px;
 }
 
 .link-item a {

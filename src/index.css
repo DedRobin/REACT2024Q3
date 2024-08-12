@@ -23,7 +23,8 @@ a {
 }
 
 a:hover {
-  color: #535bf2;
+  color: #ffdfb2;
+  background-color: #215889;
 }
 
 body {

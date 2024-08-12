@@ -6,10 +6,10 @@ export default function Header() {
     <header className="header">
       <nav className="navigation">
         <ul className="links">
-          <li className="link-item">
+          <li className="link-item form">
             <Link to={Path.Form}>Form</Link>
           </li>
-          <li className="link-item">
+          <li className="link-item react-hook-form">
             <Link to={Path.ReactHookForm}>React Hook Form</Link>
           </li>
         </ul>

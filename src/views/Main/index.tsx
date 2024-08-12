@@ -5,7 +5,9 @@ export default function Main() {
   return (
     <>
       <Header />
-      <Outlet />
+      <main className="main">
+        <Outlet />
+      </main>
     </>
   );
 }
