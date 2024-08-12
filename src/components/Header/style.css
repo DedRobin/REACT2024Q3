@@ -1,0 +1,14 @@
+.header {
+  background-color: #ffc573;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.link-item a {
+  display: inline-block;
+  padding: 5px 15px;
+}
