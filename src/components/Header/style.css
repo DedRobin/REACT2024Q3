@@ -3,12 +3,16 @@
   font-size: 2rem;
 }
 
-.links {
+.link-list {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
-.link-item a {
+.link {
   display: inline-block;
   padding: 5px 15px;
+}
+
+.link.active {
+  background-color: #215889;
 }
