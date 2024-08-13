@@ -8,6 +8,14 @@ export default function Header() {
         <ul className="link-list">
           <li className="list-item">
             <NavLink
+              to={Path.Root}
+              className={({ isActive }) => (isActive ? "link active" : "link")}
+            >
+              Main
+            </NavLink>
+          </li>
+          <li className="list-item">
+            <NavLink
               to={Path.Form}
               className={({ isActive }) => (isActive ? "link active" : "link")}
             >
