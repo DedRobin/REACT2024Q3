@@ -1,3 +1,8 @@
+@import url(Name/style.css);
+@import url(Password/style.css);
+@import url(T&C/style.css);
+@import url(SubmitButton/style.css);
+
 .form {
   display: flex;
   flex-direction: column;
@@ -8,33 +13,8 @@
   gap: 10px;
 }
 
-.label,
-.password-wrapper {
-  width: 100%;
-}
-
 .label {
+  width: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.submit-btn {
-  align-self: center;
-}
-
-.password-wrapper {
-  display: flex;
-  gap: 10px;
-}
-
-.terms-and-conditions-label {
-  flex-direction: row-reverse;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.terms-and-conditions-checkbox {
-  width: 24px;
-  height: 24px;
 }

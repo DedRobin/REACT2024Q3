@@ -1,0 +1,11 @@
+.terms-and-conditions-label {
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.terms-and-conditions-checkbox {
+  width: 24px;
+  height: 24px;
+}
