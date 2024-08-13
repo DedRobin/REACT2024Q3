@@ -4,6 +4,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 5px solid #bf9770;
+  background-color: #ffd7b2;
+  color: black;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .data-field {
@@ -12,10 +17,17 @@
   justify-content: space-around;
 }
 
+.data-field:not(:last-child) {
+  border-bottom: 5px solid #bf9770;
+}
+
 .data-key {
+  outline: 5px solid #bf9770;
+  padding: 10px;
   flex-basis: 200px;
 }
 
 .data-value {
+  padding: 10px;
   flex-grow: 1;
 }
