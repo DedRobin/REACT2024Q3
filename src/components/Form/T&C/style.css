@@ -1,7 +1,6 @@
-.terms-and-conditions-label {
-  flex-direction: row-reverse;
-  justify-content: center;
-  align-items: center;
+.field.terms-and-conditions-field {
+  align-items: flex-start;
+  flex-direction: row;
   gap: 10px;
 }
 

@@ -1,8 +1,10 @@
 export default function AvatarField() {
   return (
-    <label className="label avatar-label">
-      Avatar
-      <input className="avatar-file" type="file" />
-    </label>
+    <div className="field avatar-field">
+      <label className="avatar-label" htmlFor="avatar">
+        Avatar
+      </label>
+      <input id="avatar" className="avatar-file" type="file" name="avatar" />
+    </div>
   );
 }

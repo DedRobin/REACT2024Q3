@@ -1,18 +1,28 @@
 export default function PasswordField() {
   return (
-    <div className="password-wrapper">
-      <label className="label password-label">
-        Password
-        <input className="password-input" type="password" name="password" />
-      </label>
-      <label className="label confirm-password-label">
-        Confirm password
+    <div className="field password-fields">
+      <div className="password-field">
+        <label className="password-label" htmlFor="password">
+          Password
+        </label>
         <input
+          id="password"
+          className="password-input"
+          type="password"
+          name="password"
+        />
+      </div>
+      <div className="confirm-password-field">
+        <label className="confirm-password-label" htmlFor="confirm-password">
+          Confirm password
+        </label>
+        <input
+          id="confirm-password"
           className="confirm-password-input"
           type="password"
           name="confirm-password"
         />
-      </label>
+      </div>
     </div>
   );
 }

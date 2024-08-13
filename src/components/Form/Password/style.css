@@ -1,5 +1,12 @@
-.password-wrapper {
+.field.password-fields {
+  flex-direction: row;
   width: 100%;
-  display: flex;
   gap: 10px;
+}
+
+.password-field,
+.confirm-password-field {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }

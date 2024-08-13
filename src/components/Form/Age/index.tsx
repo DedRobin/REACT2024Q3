@@ -1,8 +1,10 @@
 export default function AgeField() {
   return (
-    <label className="label age-label">
-      Age
-      <input className="age-input" type="number" name="age" />
-    </label>
+    <div className="field age-field">
+      <label className="age-label" htmlFor="age">
+        Age
+      </label>
+      <input id="age" className="age-input" type="number" name="age" />
+    </div>
   );
 }

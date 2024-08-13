@@ -1,8 +1,10 @@
 export default function NameField() {
   return (
-    <label className="label text-label">
-      Name
-      <input className="text-input" type="text" name="name" />
-    </label>
+    <div className="field name-field">
+      <label className="text-label" htmlFor="name">
+        Name
+      </label>
+      <input id="name" className="text-input" type="text" name="name" />
+    </div>
   );
 }
