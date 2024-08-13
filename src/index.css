@@ -39,18 +39,25 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+button,
+input,
+select {
   border-radius: 8px;
   border: 0;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
+  background-color: #ffd7b2;
+  color: black;
   font-family: inherit;
-  background-color: #67a0d2;
-  cursor: pointer;
   transition:
     border-color 0.25s,
     background-color 0.25s;
+}
+
+button {
+  background-color: #67a0d2;
+  cursor: pointer;
 }
 
 button:hover {

@@ -6,7 +6,7 @@ export default function Header() {
     <header className="header">
       <nav className="navigation">
         <ul className="link-list">
-          <li className="list-item form">
+          <li className="list-item">
             <NavLink
               to={Path.Form}
               className={({ isActive }) => (isActive ? "link active" : "link")}
@@ -14,7 +14,7 @@ export default function Header() {
               Form
             </NavLink>
           </li>
-          <li className="list-item react-hook-form">
+          <li className="list-item">
             <NavLink
               to={Path.ReactHookForm}
               className={({ isActive }) => (isActive ? "link active" : "link")}

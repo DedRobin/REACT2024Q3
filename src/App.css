@@ -1,6 +1,10 @@
 @import url(views/Main/style.css);
+@import url(views/NotFound/style.css);
 @import url(components/Header/style.css);
+@import url(components/Form/style.css);
 
 #root {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
