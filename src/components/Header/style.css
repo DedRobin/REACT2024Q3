@@ -11,8 +11,12 @@
 .link {
   display: inline-block;
   padding: 5px 15px;
+  transition:
+    color 0.25s,
+    background-color 0.25s;
 }
 
 .link.active {
   background-color: #215889;
+  color: #ffdfb2;
 }
