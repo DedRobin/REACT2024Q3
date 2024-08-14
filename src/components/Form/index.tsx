@@ -24,26 +24,35 @@ export default function Form() {
     const form = formRef.current;
     if (form instanceof HTMLFormElement) {
       const formData = new FormData(form);
-      const name = String(formData.get("name"));
-      const age = String(formData.get("age"));
-      const email = String(formData.get("email"));
-      const password = String(formData.get("password"));
-      const gender = String(formData.get("gender"));
-      const avatar = String(formData.get("avatar"));
-      const country = String(formData.get("country"));
 
       const updatedData = {
-        name,
-        age,
-        email,
-        password,
-        gender,
-        avatar,
-        country,
+        name: String(formData.get("name")),
+        age: String(formData.get("age")),
+
+        email: String(formData.get("email")),
+        password: String(formData.get("password")),
+        gender: String(formData.get("gender")),
+        avatar: formData.get("avatar"),
+        country: String(formData.get("country")),
       };
 
-      dispatch(updateData(updatedData));
-      navigate(Path.Root);
+      if (updatedData.avatar instanceof File) {
+        const reader = new FileReader();
+
+        reader.onload = ({ target }) => {
+          if (target instanceof FileReader) {
+            const { result } = target;
+            if (result && typeof result === "string") {
+              updatedData.avatar = result;
+
+              dispatch(updateData(updatedData));
+              navigate(Path.Root);
+            }
+          }
+        };
+
+        reader.readAsDataURL(updatedData.avatar);
+      }
     }
   };
 
