@@ -2,13 +2,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 
 export default function Data() {
-  const state = useSelector((state: RootState) => state);
+  const data = useSelector((state: RootState) => state.data);
 
   return (
     <>
       <h2>Submitted form data</h2>
       <div className="data">
-        {Object.entries(state.data).map(([key, value], index) => {
+        {Object.entries(data).map(([key, value], index) => {
           if (key === "avatar" && value) {
             return (
               <div className="data-field" key={index}>
