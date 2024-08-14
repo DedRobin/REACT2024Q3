@@ -10,10 +10,13 @@ import SubmitButton from "./SubmitButton";
 import TermsAndConditionsField from "./T&C";
 import { useDispatch } from "react-redux";
 import { updateData } from "../Data/slice";
+import { useNavigate } from "react-router-dom";
+import { Path } from "../../views/router";
 
 export default function Form() {
   const formRef = useRef<HTMLFormElement | null>(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit: FormEventHandler = (event) => {
     event.preventDefault();
@@ -40,6 +43,7 @@ export default function Form() {
       };
 
       dispatch(updateData(updatedData));
+      navigate(Path.Root);
     }
   };
 
