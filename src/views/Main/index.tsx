@@ -1,25 +1,14 @@
 import { Outlet, useLocation, useOutletContext } from "react-router-dom";
 import Header from "../../components/Header";
 import Data from "../../components/Data";
-import React, { useState } from "react";
-import { TFormData } from "../../components/Data/types";
-
-export const defaultData: TFormData = {
-  name: "null",
-  age: "null",
-  email: "null",
-  password: "null",
-  gender: "null",
-  avatar: "null",
-  country: "null",
-};
-
-type ContextType = {
-  setData: React.Dispatch<React.SetStateAction<typeof defaultData>>;
-};
+import { useState } from "react";
+import { RootState } from "../../store";
+import { useSelector } from "react-redux";
+import { ContextType } from "./types";
 
 export default function Main() {
-  const [data, setData] = useState(defaultData);
+  const state = useSelector((state: RootState) => state);
+  const [data, setData] = useState(state.data);
   const location = useLocation();
   return (
     <>
