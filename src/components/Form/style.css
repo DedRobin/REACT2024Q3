@@ -2,6 +2,7 @@
 @import url(Password/style.css);
 @import url(T&C/style.css);
 @import url(SubmitButton/style.css);
+@import url(Country/style.css);
 
 .form {
   display: flex;
