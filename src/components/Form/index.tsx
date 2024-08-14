@@ -8,11 +8,13 @@ import NameField from "./Name";
 import PasswordField from "./Password";
 import SubmitButton from "./SubmitButton";
 import TermsAndConditionsField from "./T&C";
-import { useCustomData } from "../../views/Main";
+import { useDispatch } from "react-redux";
+import { updateData } from "../Data/slice";
 
 export default function Form() {
-  const { setData } = useCustomData();
   const formRef = useRef<HTMLFormElement | null>(null);
+  const dispatch = useDispatch();
+
   const handleSubmit: FormEventHandler = (event) => {
     event.preventDefault();
 
@@ -27,7 +29,17 @@ export default function Form() {
       const avatar = String(formData.get("avatar"));
       const country = String(formData.get("country"));
 
-      setData({ name, age, email, password, gender, avatar, country });
+      const updatedData = {
+        name,
+        age,
+        email,
+        password,
+        gender,
+        avatar,
+        country,
+      };
+
+      dispatch(updateData(updatedData));
     }
   };
 

@@ -14,8 +14,12 @@ const initialState: TFormData = {
 const dataSlice = createSlice({
   name: "data",
   initialState,
-  reducers: {},
+  reducers: {
+    updateData(state, action) {
+      return { ...state, ...action.payload };
+    },
+  },
 });
 
 export default dataSlice.reducer;
-// export const { receiveData } = dataSlice.actions;
+export const { updateData } = dataSlice.actions;
