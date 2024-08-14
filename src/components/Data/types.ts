@@ -8,8 +8,4 @@ type TFormData = {
   country: string;
 };
 
-type TDataProps = {
-  data: TFormData;
-};
-
-export type { TFormData, TDataProps };
+export type { TFormData };
