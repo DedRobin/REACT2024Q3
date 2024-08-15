@@ -1,4 +1,4 @@
-type TFormData = {
+type TData = {
   name: string;
   age: string;
   email: string;
@@ -8,4 +8,9 @@ type TFormData = {
   country: string;
 };
 
-export type { TFormData };
+type TFormData = {
+  previous: TData;
+  current: TData;
+};
+
+export type { TFormData, TData };

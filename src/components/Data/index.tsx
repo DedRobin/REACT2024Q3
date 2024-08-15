@@ -1,27 +1,35 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { useEffect, useState } from "react";
-import { TFormData } from "./types";
-import { getInitialState } from "./slice";
+import { useEffect, useRef } from "react";
+import { TData } from "./types";
 
 export default function Data() {
-  const [previousData, setPreviousData] =
-    useState<TFormData>(getInitialState());
-  const data = useSelector((state: RootState) => state.data);
+  const { previous, current } = useSelector((state: RootState) => state.data);
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  const resetNew = (element: HTMLElement) => {
+    const fields = element.querySelectorAll(".data-field");
+    fields.forEach((field) => {
+      field.classList.remove("new");
+    });
+  };
 
   useEffect(() => {
-    setTimeout(() => setPreviousData(data), 3000);
-  }, [data]);
+    const element = ref.current;
+    if (element instanceof HTMLElement) {
+      setTimeout(() => resetNew(element), 3000);
+    }
+  }, [current]);
 
   return (
     <>
       <h2>Submitted form data</h2>
-      <div className="data">
-        {Object.entries(data).map(([key, value], index) => {
+      <div className="data" ref={ref}>
+        {Object.entries(current).map(([key, value], index) => {
           return (
             <div
               className={
-                previousData[key as keyof TFormData] !== value
+                previous[key as keyof TData] !== value
                   ? "data-field new"
                   : "data-field"
               }
