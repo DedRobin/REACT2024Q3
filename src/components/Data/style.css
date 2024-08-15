@@ -31,3 +31,12 @@
   padding: 10px;
   flex-grow: 1;
 }
+
+.data-field.new .data-value::after {
+  content: "new";
+  color: white;
+  background-color: red;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 10px;
+}

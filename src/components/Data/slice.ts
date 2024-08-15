@@ -23,3 +23,4 @@ const dataSlice = createSlice({
 
 export default dataSlice.reducer;
 export const { updateData } = dataSlice.actions;
+export const { getInitialState } = dataSlice;
