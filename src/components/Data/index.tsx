@@ -15,9 +15,9 @@ export default function Data() {
   };
 
   useEffect(() => {
-    const element = ref.current;
-    if (element instanceof HTMLElement) {
-      setTimeout(() => resetNew(element), 3000);
+    const elements = ref.current;
+    if (elements instanceof HTMLElement) {
+      setTimeout(() => resetNew(elements), 2000);
     }
   }, [current]);
 

@@ -1,14 +1,18 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store";
-import { ChangeEventHandler, MouseEventHandler, useState } from "react";
+import {
+  ChangeEventHandler,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from "react";
+import { selectAllCountries } from "./selectors";
 
 export default function CountryField() {
   const [country, setCountry] = useState("");
   const [searchValue, setSearchValue] = useState("");
-  const countryList = useSelector((state: RootState) =>
-    state.country.filter((name) => searchValue && name.includes(searchValue)),
-  );
+  const countryList = useSelector(selectAllCountries);
 
+  useEffect(() => {});
   const onChange: ChangeEventHandler = ({ target }) => {
     if (target instanceof HTMLInputElement) {
       const { value } = target;
@@ -43,9 +47,15 @@ export default function CountryField() {
         value={country}
       />
       <ul className="autocomplete-country-list" onClick={onClick}>
-        {countryList.map((countryName) => (
-          <li className="country-item">{countryName}</li>
-        ))}
+        {countryList.map((countryName, index) => {
+          if (searchValue && countryName.includes(searchValue)) {
+            return (
+              <li className="country-item" key={index}>
+                {countryName}
+              </li>
+            );
+          }
+        })}
       </ul>
     </div>
   );
