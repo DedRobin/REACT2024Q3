@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { useEffect, useRef } from "react";
 import { TData } from "./types";
+import { srcMetaData } from "./constants";
 
 export default function Data() {
   const { previous, current } = useSelector((state: RootState) => state.data);
@@ -38,7 +39,7 @@ export default function Data() {
               <div className="data-key">{key}</div>
               {key === "avatar" && value ? (
                 <div className="data-value">
-                  <img srcSet={value} alt="image" />
+                  <img srcSet={srcMetaData + value} alt="image" />
                 </div>
               ) : (
                 <div className="data-value">{value}</div>

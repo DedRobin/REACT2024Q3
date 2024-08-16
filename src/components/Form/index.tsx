@@ -43,7 +43,8 @@ export default function Form() {
           if (target instanceof FileReader) {
             const { result } = target;
             if (result && typeof result === "string") {
-              updatedData.avatar = result;
+              const avatar = result.split("/")[2] || "";
+              updatedData.avatar = avatar;
 
               dispatch(updateData(updatedData));
               navigate(Path.Root);
