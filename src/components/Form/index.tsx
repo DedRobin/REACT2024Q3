@@ -12,9 +12,7 @@ import { useDispatch } from "react-redux";
 import { updateData } from "../Data/slice";
 import { useNavigate } from "react-router-dom";
 import { Path } from "../../views/router";
-import dataSchema from "./schema";
-import { ValidationError } from "yup";
-import { TData } from "../Data/types";
+import { extract, validate } from "./services";
 
 export default function Form() {
   const [errors, setErrors] = useState({});
@@ -29,18 +27,9 @@ export default function Form() {
     if (form instanceof HTMLFormElement) {
       const formData = new FormData(form);
 
-      const updatedData = {
-        name: String(formData.get("name")),
-        age: String(formData.get("age")),
-        email: String(formData.get("email")),
-        password: String(formData.get("password")),
-        gender: String(formData.get("gender")),
-        avatar: formData.get("avatar"),
-        country: String(formData.get("country")),
-        terms: String(formData.get("terms-and-conditions")) === "on",
-      };
+      const data = extract(formData);
 
-      if (updatedData.avatar instanceof File) {
+      if (data.avatar instanceof File) {
         const reader = new FileReader();
 
         reader.onload = async ({ target }) => {
@@ -48,30 +37,22 @@ export default function Form() {
             const { result } = target;
             if (result && typeof result === "string") {
               const avatar = result.split("/")[2] || "";
-              updatedData.avatar = avatar;
+              data.avatar = avatar;
 
-              const actualErrors: TData | Record<string, string> = {};
-              try {
-                await dataSchema.validate(updatedData, { abortEarly: false });
-              } catch (error) {
-                (error as ValidationError).inner.map((innerError) => {
-                  const message = innerError.message;
-                  const field = innerError.path;
-                  if (field) actualErrors[field] = message;
-                });
-              }
+              const actualErrors = await validate(data);
 
               setErrors(actualErrors);
 
               if (!Object.keys(actualErrors).length) {
-                dispatch(updateData(updatedData));
+                delete data.confirmPassword;
+                dispatch(updateData(data));
                 navigate(Path.Root);
               }
             }
           }
         };
 
-        reader.readAsDataURL(updatedData.avatar);
+        reader.readAsDataURL(data.avatar);
       }
     }
   };

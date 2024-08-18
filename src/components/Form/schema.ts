@@ -1,4 +1,4 @@
-import { boolean, object, ObjectSchema, string } from "yup";
+import { boolean, object, ObjectSchema, ref, string } from "yup";
 import { TData } from "../Data/types";
 
 const dataSchema: ObjectSchema<TData> = object({
@@ -6,6 +6,9 @@ const dataSchema: ObjectSchema<TData> = object({
   age: string().required("Age is required"),
   email: string().required("Email is required"),
   password: string().required("Password is required"),
+  confirmPassword: string()
+    .required("Confirm Password is required")
+    .oneOf([ref("password")], "Passwords must match"),
   gender: string().required("Gender is required"),
   avatar: string().required("Avatar is required"),
   country: string().required("Country is required"),
