@@ -1,4 +1,6 @@
-export default function PasswordField() {
+import { FieldProps } from "../types";
+
+export default function PasswordField({ errors }: FieldProps) {
   return (
     <div className="field password-fields">
       <div className="password-field">
@@ -23,6 +25,9 @@ export default function PasswordField() {
           name="confirm-password"
         />
       </div>
+      {errors && errors.password ? (
+        <div className="error">{errors.password}</div>
+      ) : null}
     </div>
   );
 }

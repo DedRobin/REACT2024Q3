@@ -1,4 +1,3 @@
-@import url(Name/style.css);
 @import url(Password/style.css);
 @import url(T&C/style.css);
 @import url(SubmitButton/style.css);
@@ -17,5 +16,13 @@
 .field {
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 50%;
+}
+
+.error {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: red;
 }

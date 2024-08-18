@@ -1,4 +1,6 @@
-export default function GenderField() {
+import { FieldProps } from "../types";
+
+export default function GenderField({ errors }: FieldProps) {
   return (
     <div className="field gender-field">
       <label className="gender-label" htmlFor="gender">
@@ -8,6 +10,9 @@ export default function GenderField() {
         <option className="option male-option">Male</option>
         <option className="option female-option">Female</option>
       </select>
+      {errors && errors.gender ? (
+        <div className="error">{errors.gender}</div>
+      ) : null}
     </div>
   );
 }

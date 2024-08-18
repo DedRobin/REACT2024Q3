@@ -1,4 +1,6 @@
-export default function TermsAndConditionsField() {
+import { FieldProps } from "../types";
+
+export default function TermsAndConditionsField({ errors }: FieldProps) {
   return (
     <div className="field terms-and-conditions-field">
       <input
@@ -7,9 +9,15 @@ export default function TermsAndConditionsField() {
         type="checkbox"
         name="terms-and-conditions"
       />
-      <label className="label terms-and-conditions-label">
+      <label
+        className="label terms-and-conditions-label"
+        htmlFor="terms-and-conditions"
+      >
         accept Terms and Conditions
       </label>
+      {errors && errors.terms ? (
+        <div className="error">{errors.terms}</div>
+      ) : null}
     </div>
   );
 }

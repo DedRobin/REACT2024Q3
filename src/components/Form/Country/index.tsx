@@ -6,8 +6,9 @@ import {
   useState,
 } from "react";
 import { selectAllCountries } from "./selectors";
+import { FieldProps } from "../types";
 
-export default function CountryField() {
+export default function CountryField({ errors }: FieldProps) {
   const [country, setCountry] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const countryList = useSelector(selectAllCountries);
@@ -57,6 +58,9 @@ export default function CountryField() {
           }
         })}
       </ul>
+      {errors && errors.country ? (
+        <div className="error">{errors.country}</div>
+      ) : null}
     </div>
   );
 }

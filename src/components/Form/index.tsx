@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { Path } from "../../views/router";
 import dataSchema from "./schema";
 import { ValidationError } from "yup";
+import { TData } from "../Data/types";
 
 export default function Form() {
   const [errors, setErrors] = useState({});
@@ -31,12 +32,12 @@ export default function Form() {
       const updatedData = {
         name: String(formData.get("name")),
         age: String(formData.get("age")),
-
         email: String(formData.get("email")),
         password: String(formData.get("password")),
         gender: String(formData.get("gender")),
         avatar: formData.get("avatar"),
         country: String(formData.get("country")),
+        terms: String(formData.get("terms-and-conditions")) === "on",
       };
 
       if (updatedData.avatar instanceof File) {
@@ -49,7 +50,7 @@ export default function Form() {
               const avatar = result.split("/")[2] || "";
               updatedData.avatar = avatar;
 
-              const actualErrors = {};
+              const actualErrors: TData | Record<string, string> = {};
               try {
                 await dataSchema.validate(updatedData, { abortEarly: false });
               } catch (error) {
@@ -78,13 +79,13 @@ export default function Form() {
   return (
     <form className="form" onSubmit={handleSubmit} ref={formRef}>
       <NameField errors={errors} />
-      <AgeField />
-      <EmailField />
-      <PasswordField />
-      <GenderField />
-      <AvatarField />
-      <CountryField />
-      <TermsAndConditionsField />
+      <AgeField errors={errors} />
+      <EmailField errors={errors} />
+      <PasswordField errors={errors} />
+      <GenderField errors={errors} />
+      <AvatarField errors={errors} />
+      <CountryField errors={errors} />
+      <TermsAndConditionsField errors={errors} />
       <SubmitButton />
     </form>
   );

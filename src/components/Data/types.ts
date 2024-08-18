@@ -6,6 +6,7 @@ type TData = {
   gender: string;
   avatar: string;
   country: string;
+  terms: boolean;
 };
 
 type TFormData = {
