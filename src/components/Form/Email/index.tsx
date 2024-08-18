@@ -6,7 +6,7 @@ export default function EmailField({ errors }: FieldProps) {
       <label className="email-label" htmlFor="email">
         Email
       </label>
-      <input id="email" className="email-input" type="email" name="email" />
+      <input id="email" className="email-input" type="text" name="email" />
       {errors && errors.email ? (
         <div className="error">{errors.email}</div>
       ) : null}

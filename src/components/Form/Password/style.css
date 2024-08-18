@@ -11,3 +11,23 @@
   display: flex;
   flex-direction: column;
 }
+
+.password-strength {
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  padding: 0px 10px;
+  font-weight: bold;
+}
+
+.password-strength.easy {
+  color: red;
+}
+
+.password-strength.medium {
+  color: orange;
+}
+
+.password-strength.hard {
+  color: green;
+}

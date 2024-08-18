@@ -6,7 +6,7 @@ import dataSchema from "./schema";
 const validate: ValidationFunction = async (data) => {
   const actualErrors: TData | Record<string, string> = {};
   try {
-    await dataSchema.validate(data, { abortEarly: false });
+    await dataSchema.validate(data, { abortEarly: false, strict: true });
   } catch (error) {
     (error as ValidationError).inner.map((innerError) => {
       const message = innerError.message;
@@ -21,7 +21,7 @@ const validate: ValidationFunction = async (data) => {
 const extract: ExtractorFunction = (formData) => {
   return {
     name: String(formData.get("name")),
-    age: String(formData.get("age")),
+    age: Number(formData.get("age")),
     email: String(formData.get("email")),
     password: String(formData.get("password")),
     confirmPassword: String(formData.get("confirm-password")),

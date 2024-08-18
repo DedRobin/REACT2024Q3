@@ -1,12 +1,11 @@
 type TData = {
   name: string;
-  age: string;
+  age: number;
   email: string;
   password: string;
   gender: string;
   avatar: string;
   country: string;
-  // terms: boolean;
 };
 
 type TFormData = {
