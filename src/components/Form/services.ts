@@ -1,10 +1,9 @@
 import { ValidationError } from "yup";
-import { ExtractorFunction, ValidationFunction } from "./types";
-import { TData } from "../Data/types";
+import { Errors, ExtractorFunction, ValidationFunction } from "./types";
 import dataSchema from "./schema";
 
 const validate: ValidationFunction = async (data) => {
-  const actualErrors: TData | Record<string, string> = {};
+  const actualErrors: Errors = {};
   try {
     await dataSchema.validate(data, { abortEarly: false, strict: true });
   } catch (error) {
@@ -32,7 +31,7 @@ const extract: ExtractorFunction = (formData) => {
   };
 };
 
-function noErrors(errors: Record<string, string>) {
+function noErrors(errors: Errors) {
   return !Object.keys(errors).length;
 }
 

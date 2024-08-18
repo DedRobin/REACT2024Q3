@@ -1,19 +1,27 @@
 import { TData } from "../Data/types";
 
+type Errors =
+  | (TData & { terms?: boolean; confirmPassword?: string })
+  | Record<string, string>;
+
 type FieldProps = {
-  errors: UpdatedData | Record<string, string>;
+  errors: Errors;
 };
 
 type UpdatedData = Omit<TData, "avatar"> & {
   avatar: FormDataEntryValue | null;
-  confirmPassword?: string;
   terms?: boolean;
+  confirmPassword?: string;
 };
 
 type ExtractorFunction = (formData: FormData) => UpdatedData;
 
-type ValidationFunction = (
-  updatedData: UpdatedData,
-) => Promise<Record<string, string>>;
+type ValidationFunction = (updatedData: UpdatedData) => Promise<Errors>;
 
-export type { FieldProps, UpdatedData, ValidationFunction, ExtractorFunction };
+export type {
+  FieldProps,
+  UpdatedData,
+  ValidationFunction,
+  ExtractorFunction,
+  Errors,
+};

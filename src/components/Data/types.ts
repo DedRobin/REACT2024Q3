@@ -1,6 +1,6 @@
 type TData = {
   name: string;
-  age: number;
+  age: number | "";
   email: string;
   password: string;
   gender: string;

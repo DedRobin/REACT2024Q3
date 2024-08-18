@@ -39,7 +39,7 @@ export default function Data() {
               <div className="data-key">{key}</div>
               {key === "avatar" && value ? (
                 <div className="data-value">
-                  <img srcSet={srcMetaData + value} alt="image" />
+                  <img srcSet={srcMetaData + value} height="200" alt="image" />
                 </div>
               ) : (
                 <div className="data-value">{value}</div>

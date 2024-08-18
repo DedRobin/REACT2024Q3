@@ -20,7 +20,7 @@ export default function Form() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit: FormEventHandler = (event) => {
+  const handleSubmit: FormEventHandler = async (event) => {
     event.preventDefault();
 
     const form = formRef.current;
@@ -30,29 +30,28 @@ export default function Form() {
       const data = extract(formData);
 
       if (data.avatar instanceof File) {
-        const reader = new FileReader();
+        const actualErrors = await validate(data);
+        setErrors(actualErrors);
 
-        reader.onload = async ({ target }) => {
-          if (target instanceof FileReader) {
-            const { result } = target;
-            if (result && typeof result === "string") {
-              const avatar = result.split(",")[1] || "";
-              data.avatar = avatar;
+        if (noErrors(actualErrors)) {
+          const reader = new FileReader();
+          reader.readAsDataURL(data.avatar);
 
-              const actualErrors = await validate(data);
-              setErrors(actualErrors);
+          reader.onloadend = async ({ target }) => {
+            if (target instanceof FileReader) {
+              const { result } = target;
+              if (result && typeof result === "string") {
+                const avatar = result.split(",")[1] || "";
+                data.avatar = avatar;
 
-              if (noErrors(actualErrors)) {
                 delete data.confirmPassword;
                 delete data.terms;
                 dispatch(updateData(data));
                 navigate(Path.Root);
               }
             }
-          }
-        };
-
-        reader.readAsDataURL(data.avatar);
+          };
+        }
       }
     }
   };

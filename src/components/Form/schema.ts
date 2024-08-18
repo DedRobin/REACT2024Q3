@@ -1,7 +1,9 @@
-import { boolean, number, object, ObjectSchema, ref, string } from "yup";
-import { TData } from "../Data/types";
+import { boolean, mixed, number, object, ref, string } from "yup";
 
-const dataSchema: ObjectSchema<TData> = object({
+const VALID_TYPES = ["image/jpeg", "image/jpeg", "image/png"];
+const VALID_SIZE = 2_000_000;
+
+const dataSchema = object({
   name: string()
     .matches(/^[A-Z].*/, "First letter must be uppercase")
     .required("Name is required"),
@@ -27,11 +29,30 @@ const dataSchema: ObjectSchema<TData> = object({
     .required("Confirm Password is required")
     .oneOf([ref("password")], "Passwords must match"),
   gender: string().required("Gender is required"),
-  avatar: string().required("Avatar is required"),
+  avatar: mixed<File>()
+    .test(
+      "File size test",
+      `File size must be less then '${VALID_SIZE}'`,
+      validateSize,
+    )
+    .test("File type test", `File type must be '${VALID_TYPES}'`, validateType)
+    .required("Avatar is required"),
   country: string().required("Country is required"),
   terms: boolean()
     .required("Terms and Conditions is required")
     .isTrue("Must be accepted"),
 });
+
+function validateSize(file?: File) {
+  let valid = true;
+  if (file && file.size >= VALID_SIZE) valid = false;
+  return valid;
+}
+
+function validateType(file?: File) {
+  let valid = true;
+  if (file && !VALID_TYPES.includes(file.type)) valid = false;
+  return valid;
+}
 
 export default dataSchema;
