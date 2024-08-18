@@ -1,10 +1,5 @@
 import { useSelector } from "react-redux";
-import {
-  ChangeEventHandler,
-  MouseEventHandler,
-  useEffect,
-  useState,
-} from "react";
+import { ChangeEventHandler, MouseEventHandler, useState } from "react";
 import { selectAllCountries } from "./selectors";
 import { FieldProps } from "../types";
 
@@ -13,7 +8,6 @@ export default function CountryField({ errors }: FieldProps) {
   const [searchValue, setSearchValue] = useState("");
   const countryList = useSelector(selectAllCountries);
 
-  useEffect(() => {});
   const onChange: ChangeEventHandler = ({ target }) => {
     if (target instanceof HTMLInputElement) {
       const { value } = target;

@@ -1,13 +1,16 @@
-import { FieldProps } from "../types";
+import { RHFieldProps } from "../types";
 
-export default function TermsAndConditionsField({ errors }: FieldProps) {
+export default function RHTermsAndConditionsField({
+  registerReturn,
+  errors,
+}: RHFieldProps) {
   return (
     <div className="field terms-and-conditions-field">
       <input
         id="terms-and-conditions"
         className="terms-and-conditions-checkbox"
         type="checkbox"
-        name="terms-and-conditions"
+        {...registerReturn}
       />
       <label
         className="label terms-and-conditions-label"
@@ -15,9 +18,7 @@ export default function TermsAndConditionsField({ errors }: FieldProps) {
       >
         accept Terms and Conditions
       </label>
-      {errors && errors.terms ? (
-        <div className="error">{errors.terms}</div>
-      ) : null}
+      <div className="error">{errors.terms?.message}</div>
     </div>
   );
 }

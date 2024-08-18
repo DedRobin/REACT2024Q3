@@ -1,18 +1,19 @@
-import { FieldProps } from "../types";
+import { RHFieldProps } from "../types";
 
-export default function GenderField({ errors }: FieldProps) {
+export default function RHGenderField({
+  registerReturn,
+  errors,
+}: RHFieldProps) {
   return (
     <div className="field gender-field">
       <label className="gender-label" htmlFor="gender">
         Gender
       </label>
-      <select id="gender" className="gender-select" name="gender">
+      <select id="gender" className="gender-select" {...registerReturn}>
         <option className="option male-option">Male</option>
         <option className="option female-option">Female</option>
       </select>
-      {errors && errors.gender ? (
-        <div className="error">{errors.gender}</div>
-      ) : null}
+      <div className="error">{errors.gender?.message}</div>
     </div>
   );
 }

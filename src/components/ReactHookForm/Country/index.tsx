@@ -1,22 +1,20 @@
 import { useSelector } from "react-redux";
-import {
-  ChangeEventHandler,
-  MouseEventHandler,
-  useEffect,
-  useState,
-} from "react";
-import { selectAllCountries } from "./selectors";
-import { FieldProps } from "../types";
+import { FormEventHandler, MouseEventHandler, useState } from "react";
+import { RHFieldProps } from "../types";
+import { selectAllCountries } from "../../Form/Country/selectors";
 
-export default function CountryField({ errors }: FieldProps) {
+export default function RHCountryField({
+  registerReturn,
+  errors,
+  watch,
+}: RHFieldProps) {
   const [country, setCountry] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const countryList = useSelector(selectAllCountries);
 
-  useEffect(() => {});
-  const onChange: ChangeEventHandler = ({ target }) => {
-    if (target instanceof HTMLInputElement) {
-      const { value } = target;
+  const onChange: FormEventHandler = () => {
+    if (watch) {
+      const value = watch("country");
       setSearchValue(value);
       setCountry(value);
     }
@@ -36,16 +34,15 @@ export default function CountryField({ errors }: FieldProps) {
   };
 
   return (
-    <div className="field country-field">
+    <div className="field country-field" onChange={onChange}>
       <label className="country-label" htmlFor="country">
         Country
       </label>
       <input
         id="country"
         className="country-input"
-        name="country"
-        onChange={onChange}
         value={country}
+        {...registerReturn}
       />
       <ul className="autocomplete-country-list" onClick={onClick}>
         {countryList.map((countryName, index) => {
@@ -58,9 +55,7 @@ export default function CountryField({ errors }: FieldProps) {
           }
         })}
       </ul>
-      {errors && errors.country ? (
-        <div className="error">{errors.country}</div>
-      ) : null}
+      <div className="error">{errors.country?.message}</div>
     </div>
   );
 }

@@ -6,7 +6,13 @@ export default function AgeField({ errors }: FieldProps) {
       <label className="age-label" htmlFor="age">
         Age
       </label>
-      <input id="age" className="age-input" type="number" name="age" />
+      <input
+        id="age"
+        className="age-input"
+        type="number"
+        defaultValue="0"
+        name="age"
+      />
       {errors && errors.age ? <div className="error">{errors.age}</div> : null}
     </div>
   );

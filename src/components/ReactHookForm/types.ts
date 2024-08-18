@@ -1,6 +1,10 @@
-import { FieldErrors, UseFormRegisterReturn } from "react-hook-form";
+import {
+  FieldErrors,
+  UseFormRegisterReturn,
+  UseFormWatch,
+} from "react-hook-form";
 
-export type ReactHookErrors = FieldErrors<{
+type RHData = {
   name: string;
   age: number;
   email: string;
@@ -10,9 +14,18 @@ export type ReactHookErrors = FieldErrors<{
   avatar: File;
   country: string;
   terms: true;
-}>;
+};
 
-export type ReactHookFieldProps = {
+export type RHErrors = FieldErrors<RHData>;
+
+export type RHFieldProps = {
   registerReturn: UseFormRegisterReturn;
-  errors: ReactHookErrors;
+  errors: RHErrors;
+  watch?: UseFormWatch<RHData>;
+};
+export type RHPasswordFieldProps = {
+  passwordRegisterReturn: UseFormRegisterReturn;
+  confirmPasswordRegisterReturn: UseFormRegisterReturn;
+  errors: RHErrors;
+  watch?: UseFormWatch<RHData>;
 };

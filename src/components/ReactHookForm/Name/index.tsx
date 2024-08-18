@@ -1,15 +1,12 @@
-import { ReactHookFieldProps } from "../types";
+import { RHFieldProps } from "../types";
 
-export default function ReactHookNameField({
-  registerReturn,
-  errors,
-}: ReactHookFieldProps) {
+export default function RHNameField({ registerReturn, errors }: RHFieldProps) {
   return (
     <div className="field name-field">
       <label className="text-label" htmlFor="name">
         Name
       </label>
-      <input {...registerReturn} />
+      <input id="name" className="text-input" type="text" {...registerReturn} />
       <div className="error">{errors.name?.message}</div>
     </div>
   );

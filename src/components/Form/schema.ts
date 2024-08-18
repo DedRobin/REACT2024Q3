@@ -1,6 +1,6 @@
 import { boolean, mixed, number, object, ref, string } from "yup";
 
-const VALID_TYPES = ["image/jpeg", "image/jpeg", "image/png"];
+const VALID_TYPES = ["image/jpg", "image/jpeg", "image/png"];
 const VALID_SIZE = 2_000_000;
 
 const dataSchema = object({
@@ -49,9 +49,15 @@ function validateSize(file?: File) {
   return valid;
 }
 
-function validateType(file?: File) {
+function validateType(file?: File | FileList) {
   let valid = true;
-  if (file && !VALID_TYPES.includes(file.type)) valid = false;
+  if (file instanceof File && !VALID_TYPES.includes(file.type)) valid = false;
+  if (
+    file instanceof FileList &&
+    (!file.length || !VALID_TYPES.includes(file[0].type))
+  )
+    valid = false;
+
   return valid;
 }
 

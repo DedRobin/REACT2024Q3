@@ -1,24 +1,20 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import SubmitButton from "../Form/SubmitButton";
 import { yupResolver } from "@hookform/resolvers/yup";
 import dataSchema from "../Form/schema";
-import ReactHookNameField from "./Name";
+import RHNameField from "./Name";
 import { UpdatedData } from "../Form/types";
-import { object, string } from "yup";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateData } from "../Data/slice";
 import { Path } from "../../views/router";
-
-// type Inputs = {
-//   example: string;
-//   exampleRequired: string;
-// };
-const testSchema = object({
-  name: string()
-    .matches(/^[A-Z].*/, "First letter must be uppercase")
-    .required("Name is required"),
-});
+import RHAgeField from "./Age";
+import RHEmailField from "./Email";
+import RHGenderField from "./Gender";
+import RHAvatarField from "./Avatar";
+import RHCountryField from "./Country";
+import RHTermsAndConditionsField from "./T&C";
+import SubmitButton from "./SubmitButton";
+import RHPasswordField from "./Password";
 
 export default function ReactHookCustomForm() {
   const {
@@ -26,42 +22,57 @@ export default function ReactHookCustomForm() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(testSchema) });
+  } = useForm({
+    mode: "all",
+    resolver: yupResolver(dataSchema),
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<UpdatedData> = (data) => {
-    console.log(data);
-    dispatch(updateData(data));
-    navigate(Path.Root);
+    delete data.terms;
+    delete data.confirmPassword;
+
+    const reader = new FileReader();
+    if (data.avatar instanceof FileList) reader.readAsDataURL(data.avatar[0]);
+
+    reader.onloadend = async ({ target }) => {
+      if (target instanceof FileReader) {
+        const { result } = target;
+        if (result && typeof result === "string") {
+          const avatar = result.split(",")[1] || "";
+          data.avatar = avatar;
+
+          delete data.confirmPassword;
+          delete data.terms;
+          dispatch(updateData(data));
+          navigate(Path.Root);
+        }
+      }
+    };
   };
 
-  //   console.log("Watch", watch("example"), watch("exampleRequired")); // watch input value by passing the name of it
-
-  //   return (
-  //     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-  //     <form onSubmit={handleSubmit(onSubmit)}>
-  //       {/* register your input into the hook by invoking the "register" function */}
-  //       <input defaultValue="test" {...register("example")} />
-
-  //       {/* include validation with required or other standard HTML validation rules */}
-  //       <input {...register("exampleRequired", { required: true })} />
-  //       {/* errors will return when field validation fails  */}
-  //       {errors.exampleRequired && <span>This field is required</span>}
-
-  //       <input type="submit" />
-  //     </form>
-  //   );
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
-      <ReactHookNameField registerReturn={register("name")} errors={errors} />
-      {/* <AgeField errors={errors} /> */}
-      {/* <EmailField errors={errors} /> */}
-      {/* <PasswordField errors={errors} /> */}
-      {/* <GenderField errors={errors} /> */}
-      {/* <AvatarField errors={errors} /> */}
-      {/* <CountryField errors={errors} /> */}
-      {/* <TermsAndConditionsField errors={errors} /> */}
+      <RHNameField registerReturn={register("name")} errors={errors} />
+      <RHAgeField registerReturn={register("age")} errors={errors} />
+      <RHEmailField registerReturn={register("email")} errors={errors} />
+      <RHPasswordField
+        passwordRegisterReturn={register("password")}
+        confirmPasswordRegisterReturn={register("confirmPassword")}
+        errors={errors}
+      />
+      <RHGenderField registerReturn={register("gender")} errors={errors} />
+      <RHAvatarField registerReturn={register("avatar")} errors={errors} />
+      <RHCountryField
+        registerReturn={register("country")}
+        watch={watch}
+        errors={errors}
+      />
+      <RHTermsAndConditionsField
+        registerReturn={register("terms")}
+        errors={errors}
+      />
       <SubmitButton />
     </form>
   );

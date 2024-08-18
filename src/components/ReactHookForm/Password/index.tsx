@@ -1,14 +1,18 @@
-import { ChangeEventHandler, useState } from "react";
-import { FieldProps } from "../types";
-import dataSchema from "../schema";
+import { FormEventHandler, useState } from "react";
 import { ValidationError } from "yup";
+import dataSchema from "../../Form/schema";
+import { RHPasswordFieldProps } from "../types";
 
-export default function PasswordField({ errors }: FieldProps) {
+export default function RHPasswordField({
+  passwordRegisterReturn,
+  confirmPasswordRegisterReturn,
+  errors,
+}: RHPasswordFieldProps) {
   const [strength, setStrength] = useState<"easy" | "medium" | "hard" | null>(
     null,
   );
 
-  const onChange: ChangeEventHandler = async ({ target }) => {
+  const onChange: FormEventHandler = async ({ target }) => {
     if (
       target instanceof HTMLInputElement &&
       target.className === "password-input"
@@ -42,7 +46,7 @@ export default function PasswordField({ errors }: FieldProps) {
   };
 
   return (
-    <div className="field password-fields">
+    <div className="field password-fields" onChange={onChange}>
       <div className="password-field">
         <label className="password-label" htmlFor="password">
           Password
@@ -51,15 +55,12 @@ export default function PasswordField({ errors }: FieldProps) {
           id="password"
           className="password-input"
           type="password"
-          name="password"
-          onChange={onChange}
+          {...passwordRegisterReturn}
         />
         {strength ? (
           <div className={"password-strength" + " " + strength}>{strength}</div>
         ) : null}
-        {errors && errors.password ? (
-          <div className="error">{errors.password}</div>
-        ) : null}
+        <div className="error">{errors.password?.message}</div>
       </div>
       <div className="confirm-password-field">
         <label className="confirm-password-label" htmlFor="confirm-password">
@@ -69,11 +70,9 @@ export default function PasswordField({ errors }: FieldProps) {
           id="confirm-password"
           className="confirm-password-input"
           type="password"
-          name="confirm-password"
+          {...confirmPasswordRegisterReturn}
         />
-        {errors && errors.confirmPassword ? (
-          <div className="error">{errors.confirmPassword}</div>
-        ) : null}
+        <div className="error">{errors.confirmPassword?.message}</div>
       </div>
     </div>
   );
