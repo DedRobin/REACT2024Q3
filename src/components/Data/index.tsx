@@ -3,6 +3,7 @@ import { RootState } from "../../store";
 import { useEffect, useRef } from "react";
 import { TData } from "./types";
 import { srcMetaData } from "./constants";
+import { getInitialState } from "./slice";
 
 export default function Data() {
   const { previous, current } = useSelector((state: RootState) => state.data);
@@ -26,23 +27,29 @@ export default function Data() {
     <>
       <h2>Submitted form data</h2>
       <div className="data" ref={ref}>
-        {Object.entries(current).map(([key, value], index) => {
+        {Object.keys(getInitialState().current).map((field, index) => {
           return (
             <div
               className={
-                previous[key as keyof TData] !== value
+                previous[field as keyof TData] !== current[field as keyof TData]
                   ? "data-field new"
                   : "data-field"
               }
               key={index}
             >
-              <div className="data-key">{key}</div>
-              {key === "avatar" && value ? (
+              <div className="data-key">{field}</div>
+              {field === "avatar" && current[field] ? (
                 <div className="data-value">
-                  <img srcSet={srcMetaData + value} height="200" alt="image" />
+                  <img
+                    srcSet={srcMetaData + current[field]}
+                    height="200"
+                    alt="image"
+                  />
                 </div>
               ) : (
-                <div className="data-value">{value}</div>
+                <div className="data-value">
+                  {current[field as keyof TData]}
+                </div>
               )}
             </div>
           );
