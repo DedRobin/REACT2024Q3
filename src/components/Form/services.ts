@@ -31,4 +31,9 @@ const extract: ExtractorFunction = (formData) => {
     terms: String(formData.get("terms-and-conditions")) === "on",
   };
 };
-export { validate, extract };
+
+function noErrors(errors: Record<string, string>) {
+  return !Object.keys(errors).length;
+}
+
+export { validate, extract, noErrors };

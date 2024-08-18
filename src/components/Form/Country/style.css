@@ -12,6 +12,7 @@
   max-height: 200px;
   border-radius: 8px;
   overflow-y: scroll;
+  z-index: 1;
 }
 
 .country-item {

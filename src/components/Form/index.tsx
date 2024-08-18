@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { updateData } from "../Data/slice";
 import { useNavigate } from "react-router-dom";
 import { Path } from "../../views/router";
-import { extract, validate } from "./services";
+import { extract, noErrors, validate } from "./services";
 
 export default function Form() {
   const [errors, setErrors] = useState({});
@@ -36,15 +36,15 @@ export default function Form() {
           if (target instanceof FileReader) {
             const { result } = target;
             if (result && typeof result === "string") {
-              const avatar = result.split("/")[2] || "";
+              const avatar = result.split(",")[1] || "";
               data.avatar = avatar;
 
               const actualErrors = await validate(data);
-
               setErrors(actualErrors);
 
-              if (!Object.keys(actualErrors).length) {
+              if (noErrors(actualErrors)) {
                 delete data.confirmPassword;
+                delete data.terms;
                 dispatch(updateData(data));
                 navigate(Path.Root);
               }

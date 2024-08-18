@@ -13,6 +13,9 @@ export default function PasswordField({ errors }: FieldProps) {
           type="password"
           name="password"
         />
+        {errors && errors.password ? (
+          <div className="error">{errors.password}</div>
+        ) : null}
       </div>
       <div className="confirm-password-field">
         <label className="confirm-password-label" htmlFor="confirm-password">
@@ -24,10 +27,10 @@ export default function PasswordField({ errors }: FieldProps) {
           type="password"
           name="confirm-password"
         />
+        {errors && errors.confirmPassword ? (
+          <div className="error">{errors.confirmPassword}</div>
+        ) : null}
       </div>
-      {errors && errors.password ? (
-        <div className="error">{errors.password}</div>
-      ) : null}
     </div>
   );
 }

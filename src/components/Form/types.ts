@@ -1,12 +1,13 @@
 import { TData } from "../Data/types";
 
 type FieldProps = {
-  errors: TData | Record<string, string>;
+  errors: UpdatedData | Record<string, string>;
 };
 
 type UpdatedData = Omit<TData, "avatar"> & {
-  confirmPassword?: string;
   avatar: FormDataEntryValue | null;
+  confirmPassword?: string;
+  terms?: boolean;
 };
 
 type ExtractorFunction = (formData: FormData) => UpdatedData;
