@@ -1,0 +1,47 @@
+.data {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #bf9770;
+  background-color: #ffd7b2;
+  color: black;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.data-field {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.data-field:not(:last-child) {
+  border-bottom: 5px solid #bf9770;
+}
+
+.data-key {
+  outline: 5px solid #bf9770;
+  padding: 10px;
+  flex-basis: 200px;
+}
+
+.data-value {
+  padding: 10px;
+  flex-grow: 1;
+  position: relative;
+}
+
+.data-field.new .data-value::after {
+  content: "new";
+  color: white;
+  background-color: red;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 0px 10px;
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translate(0, -50%);
+}

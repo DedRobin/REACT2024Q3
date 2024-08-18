@@ -1,0 +1,10 @@
+.field.terms-and-conditions-field {
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.terms-and-conditions-checkbox {
+  width: 24px;
+  height: 24px;
+}

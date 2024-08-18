@@ -1,0 +1,80 @@
+@import url(./App.css);
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #ffdfb2;
+  background-color: #a67025;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: black;
+  text-decoration: inherit;
+  margin: 0px;
+}
+
+a:hover {
+  color: #ffdfb2;
+  background-color: #215889;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button,
+input,
+select {
+  border-radius: 8px;
+  border: 0;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  background-color: #ffd7b2;
+  color: black;
+  font-family: inherit;
+  transition:
+    border-color 0.25s,
+    background-color 0.25s;
+}
+
+button {
+  background-color: #67a0d2;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: #646cff;
+  background-color: #215889;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+ul {
+  padding: 0px;
+  margin: 0px;
+}
+
+li {
+  list-style: none;
+}

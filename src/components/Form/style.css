@@ -1,0 +1,28 @@
+@import url(Password/style.css);
+@import url(T&C/style.css);
+@import url(SubmitButton/style.css);
+@import url(Country/style.css);
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+  min-width: 320px;
+  padding: 20px;
+  gap: 10px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 50%;
+}
+
+.error {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: red;
+}
